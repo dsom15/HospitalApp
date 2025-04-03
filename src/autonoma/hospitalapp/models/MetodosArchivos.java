@@ -76,6 +76,18 @@ public class MetodosArchivos {
              ex.printStackTrace();
         }
      }
+     
+     public void archivosDirectorio (String directorio){
+         File f1 = new File (directorio);
+         
+         String[] archivos =f1.list();
+         for(int i=0;i<archivos.length;i++){
+             System.out.println(archivos[i]);
+         }
+         
+     }
+     
+     
     
     
     

@@ -12,10 +12,13 @@ import autonoma.hospitalapp.models.MetodosArchivos;
 public class HospitalApp {
     public static void main(String[] args) {
         String archivo = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\archivo.txt";
+        String directorio = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp";
+        
         MetodosArchivos ma = new MetodosArchivos ();
         ma.crearArchivo(archivo);
         ma.escribirArchivo(archivo, "Esta es la primera linea de texto");
         ma.leerArchivo(archivo);
+        
     }
  
 }
