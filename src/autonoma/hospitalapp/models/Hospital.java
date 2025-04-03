@@ -154,7 +154,6 @@ public class Hospital {
         this.localizacion = localizacion;
     }
 
-<<<<<<< HEAD
     void aumentarPresupuesto(double precioVenta) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -162,7 +161,6 @@ public class Hospital {
     void descontarPresupuesto(double costo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-=======
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
@@ -255,7 +253,6 @@ public class Hospital {
     
     
     //Metodos gestion de nomina 
->>>>>>> ec8a76de2b1024d0aefb8711dfd14a5f7acc81a6
     
 
 }

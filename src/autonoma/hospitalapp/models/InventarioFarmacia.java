@@ -42,14 +42,11 @@ class InventarioFarmacia {
         hospital.descontarPresupuesto(medicamento.getCosto());
     }
 
-    /**
+     /**
      * Vende un medicamento, aumentando el presupuesto del hospital.
-     * Ej : Tenemos digamos 1.000.000 en el momento, se compra un
-     *  medicamento por 20.000, se tiene un total de $ 1.020.000
      * 
      * @param nombre Nombre del medicamento a vender.
      * @param hospital Hospital al que se le suma la venta.
-     * (Hospital San José St. Bonaventure)
      */
     public void venderMedicamento(String nombre, Hospital hospital) {
         for (Medicamento medicamento : medicamentos) {
@@ -60,5 +57,7 @@ class InventarioFarmacia {
             }
         }
     }
+}
+
 }
 
