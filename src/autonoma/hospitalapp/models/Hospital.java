@@ -55,11 +55,12 @@ public class Hospital {
      *
      */
     private ArrayList<Empleado> empleados;
+ 
     /**
-     *
-     * clase empleado
+     * 
+     * clase nomina 
      */
-    private Empleado empleado;
+    private Nomina nomina;
 
     //Constructor
     public Hospital(double metaDeventasAnual, boolean estado, Gerente gerente, Localizacion localizacion) {
@@ -68,6 +69,7 @@ public class Hospital {
         this.gerente = gerente;
         this.localizacion = localizacion;
         this.empleados = new ArrayList<>();
+        this.nomina = nomina;
     }
 
     public Hospital() {
@@ -76,6 +78,7 @@ public class Hospital {
         this.gerente = gerente;
         this.localizacion = localizacion;
         this.empleados = new ArrayList<>();
+        this.nomina = nomina;
     }
 
     //Metodos de acceso 
@@ -159,6 +162,16 @@ public class Hospital {
         this.empleados = empleados;
     }
 
+    public Nomina getNomina() {
+        return nomina;
+    }
+
+    public void setNomina(Nomina nomina) {
+        this.nomina = nomina;
+    }
+
+  
+    
     // metodos crud de empleado
     /**
      * metodo agregar empleado
@@ -218,7 +231,10 @@ public class Hospital {
         }
         return false;
     }
-
+    /**
+     * muestra la lista de empleados
+     * @return 
+     */
     public String mostrarEmpleado() {
         String lista = "";
         for (int i = 0; i < this.empleados.size(); i++) {
@@ -227,5 +243,9 @@ public class Hospital {
         }
         return lista;
     }
+    
+    
+    //Metodos gestion de nomina 
+    
 
 }
