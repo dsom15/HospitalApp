@@ -5,12 +5,15 @@
 package autonoma.hospitalapp.models;
 
 
+import java.io.BufferedReader;
 import java.io.File;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.in;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,6 +56,27 @@ public class MetodosArchivos {
              ex.printStackTrace();
         }
     }
+    /**
+     * se crea el metodo leer archivo
+     * @param archivo 
+     */
+     public void leerArchivo (String archivo){
+         File f1 = new File (archivo);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(archivo));
+            String leer = br.readLine();
+            while(leer!=null){
+                System.out.println(leer);
+                leer=br.readLine();
+            }
+            br.close();
+        } catch (FileNotFoundException ex) {
+             ex.printStackTrace();
+        } catch (IOException ex) {
+             ex.printStackTrace();
+        }
+     }
+    
     
     
 }

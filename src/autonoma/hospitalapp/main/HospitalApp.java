@@ -15,6 +15,7 @@ public class HospitalApp {
         MetodosArchivos ma = new MetodosArchivos ();
         ma.crearArchivo(archivo);
         ma.escribirArchivo(archivo, "Esta es la primera linea de texto");
+        ma.leerArchivo(archivo);
     }
  
 }
