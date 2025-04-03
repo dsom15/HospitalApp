@@ -30,6 +30,21 @@ package autonoma.hospitalapp.models;
         super(nombre, descripcion, costo);
         this.fabricante = fabricante;
     }   
-    
-    
+     
+    /**
+     * Obtiene el fabricante del medicamento.
+     * 
+     * @return Nombre del fabricante.
+     */
+    public String getFabricante() {
+        return fabricante;
+    }
+    /**
+     * Calcula el precio de venta sumando un 25% al costo.
+     */
+    @Override
+    protected void calcularPrecioVenta() {
+        this.precioVenta = super.getCosto() * 1.25;
+    }
+
 }
