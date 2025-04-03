@@ -44,9 +44,13 @@ public class Hospital {
      */
     private boolean estado;
     /**
-     * 
+     * de la clase gerente
      */
     private Gerente gerente;
+    /**
+     * de la clase localizacion
+     */
+    private Localizacion localizacion;
     
     //Constructor
     public Hospital(double metaDeventasAnual, boolean estado,Gerente gerente) {
