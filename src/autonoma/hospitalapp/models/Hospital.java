@@ -8,37 +8,39 @@ import java.util.Date;
 
 /**
  * Se crea la clase Hospital
+ *
  * @author Dsoch
  * @since 2042025
  * @version 1.0.0
  * @
  */
 public class Hospital {
+
     //atributos 
     /**
      * Nombre del Hospital
      */
-    private String  nombre;
+    private String nombre;
     /**
-     * Direccion del Hospital 
+     * Direccion del Hospital
      */
-    private String direccion; 
+    private String direccion;
     /**
      * Telefono de contacto del Hospital
      */
     private String telefono;
     /**
-     * Presupuesto del Hospital 
+     * Presupuesto del Hospital
      */
-    private  double presupuesto;
+    private double presupuesto;
     /**
-     * Meta de la ventas del Hospital 
+     * Meta de la ventas del Hospital
      */
     private double metaDeventasAnual;
     /**
      * Fecha de la creacion de la fundacion
      */
-    private String  fechaFundacion;
+    private String fechaFundacion;
     /**
      * Estado si es en quiebra o no del Hospital
      */
@@ -51,17 +53,22 @@ public class Hospital {
      * de la clase localizacion
      */
     private Localizacion localizacion;
-    
+
     //Constructor
-    public Hospital(double metaDeventasAnual, boolean estado,Gerente gerente) {
+    public Hospital(double metaDeventasAnual, boolean estado, Gerente gerente, Localizacion localizacion) {
         this.metaDeventasAnual = metaDeventasAnual;
         this.estado = estado;
         this.gerente = gerente;
+        this.localizacion = localizacion;
     }
 
     public Hospital() {
+        this.metaDeventasAnual = metaDeventasAnual;
+        this.estado = estado;
+        this.gerente = gerente;
+        this.localizacion = localizacion;
     }
-    
+
     //Metodos de acceso 
     public String getNombre() {
         return nombre;
@@ -110,7 +117,7 @@ public class Hospital {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
+
     public Gerente getGerente() {
         return gerente;
     }
@@ -118,10 +125,22 @@ public class Hospital {
     public void setGerente(Gerente gerente) {
         this.gerente = gerente;
     }
+
+    public double getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(double presupuesto) {
+        this.presupuesto = presupuesto;
+    }
+
+    public Localizacion getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Localizacion localizacion) {
+        this.localizacion = localizacion;
+    }
     
-    
-   
-  
-    
-    
+
 }
