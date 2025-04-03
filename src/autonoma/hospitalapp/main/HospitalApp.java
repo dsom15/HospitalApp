@@ -14,6 +14,7 @@ public class HospitalApp {
         String archivo = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\archivo.txt";
         MetodosArchivos ma = new MetodosArchivos ();
         ma.crearArchivo(archivo);
+        ma.escribirArchivo(archivo, "Esta es la primera linea de texto");
     }
  
 }
