@@ -1,5 +1,6 @@
 package autonoma.hospitalapp.models;
 
+import autonoma.hospitalapp.exceptions.DeclararQuiebraException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -34,9 +35,9 @@ public class Nomina {
 
     public Nomina(ArrayList<Empleado> empleados) {
         this.id = contadorId++;
-        this.fecha = fecha;
+        this.fecha = new Date();
         this.empleados = empleados;
-        this.totalSalarioNomina = totalSalarioNomina;
+        this.totalSalarioNomina = calcularTotalSalario();
 
     }
 
@@ -84,21 +85,32 @@ public class Nomina {
         }
         return total;
     }
+
     /**
-     * merodo para generar la nomina de los empleados y descontarla del presupuesto
-     * @param hospital 
+     * merodo para generar la nomina de los empleados y descontarla del
+     * presupuesto
+     *
+     * @param hospital
      */
-    public void generarNomina(Hospital hospital) {
-        double total = 0;
-        for (Empleado e : empleados) {
-            total += e.calcularSalario();
-        }
-
-        hospital.setPresupuesto(hospital.getPresupuesto() - total);
-        this.totalSalarioNomina = total;
+    /**
+     * Método para generar la nómina de los empleados y actualizar la fecha.
+     */
+    public void generarNomina() {
+        this.totalSalarioNomina = calcularTotalSalario();
         this.fecha = new Date();
+    }
+    /**
+     * metodo para descontar el salrio del presupuesto
+     * @param hospital
+     * @throws DeclararQuiebraException 
+     */
+    public void descontarNomina(Hospital hospital) throws DeclararQuiebraException {
+        hospital.setPresupuesto(hospital.getPresupuesto() - this.totalSalarioNomina);
 
-        
+        if (hospital.getPresupuesto() < 0) {
+            hospital.setEstado(false);
+            throw new DeclararQuiebraException();
+        }
     }
 
 }

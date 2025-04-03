@@ -1,5 +1,6 @@
 package autonoma.hospitalapp.models;
 
+import autonoma.hospitalapp.exceptions.DeclararQuiebraException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -55,10 +56,10 @@ public class Hospital {
      *
      */
     private ArrayList<Empleado> empleados;
- 
+
     /**
-     * 
-     * clase nomina 
+     *
+     * clase nomina
      */
     private Nomina nomina;
 
@@ -69,7 +70,7 @@ public class Hospital {
         this.gerente = gerente;
         this.localizacion = localizacion;
         this.empleados = new ArrayList<>();
-        this.nomina = nomina;
+        this.nomina = new Nomina(this.empleados);
     }
 
     public Hospital() {
@@ -78,7 +79,7 @@ public class Hospital {
         this.gerente = gerente;
         this.localizacion = localizacion;
         this.empleados = new ArrayList<>();
-        this.nomina = nomina;
+        this.nomina = new Nomina(this.empleados);
     }
 
     //Metodos de acceso 
@@ -170,8 +171,6 @@ public class Hospital {
         this.nomina = nomina;
     }
 
-  
-    
     // metodos crud de empleado
     /**
      * metodo agregar empleado
@@ -231,9 +230,11 @@ public class Hospital {
         }
         return false;
     }
+
     /**
      * muestra la lista de empleados
-     * @return 
+     *
+     * @return
      */
     public String mostrarEmpleado() {
         String lista = "";
@@ -243,9 +244,16 @@ public class Hospital {
         }
         return lista;
     }
-    
-    
+
     //Metodos gestion de nomina 
-    
+    public void procesarNomina() throws DeclararQuiebraException {
+        try {
+            this.nomina.generarNomina(); 
+            this.nomina.descontarNomina(this);
+        } catch (DeclararQuiebraException e) {
+            this.estado = false;
+            throw e;
+        }
+    }
 
 }
