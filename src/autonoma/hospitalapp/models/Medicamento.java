@@ -20,7 +20,7 @@ package autonoma.hospitalapp.models;
 /**
  * Clase que representa un medicamento en la farmacia del hospital
  */
- abstract class Medicamento {
+  public abstract class Medicamento {
     /**
      * Nombre del medicamento
      */

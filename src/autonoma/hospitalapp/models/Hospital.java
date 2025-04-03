@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package autonoma.hospitalapp.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -53,6 +50,17 @@ public class Hospital {
      * de la clase localizacion
      */
     private Localizacion localizacion;
+    /**
+     * lista de empleados
+     *
+     */
+    private ArrayList<Empleado> empleados;
+ 
+    /**
+     * 
+     * clase nomina 
+     */
+    private Nomina nomina;
 
     //Constructor
     public Hospital(double metaDeventasAnual, boolean estado, Gerente gerente, Localizacion localizacion) {
@@ -60,6 +68,8 @@ public class Hospital {
         this.estado = estado;
         this.gerente = gerente;
         this.localizacion = localizacion;
+        this.empleados = new ArrayList<>();
+        this.nomina = nomina;
     }
 
     public Hospital() {
@@ -67,6 +77,8 @@ public class Hospital {
         this.estado = estado;
         this.gerente = gerente;
         this.localizacion = localizacion;
+        this.empleados = new ArrayList<>();
+        this.nomina = nomina;
     }
 
     //Metodos de acceso 
@@ -142,6 +154,7 @@ public class Hospital {
         this.localizacion = localizacion;
     }
 
+<<<<<<< HEAD
     void aumentarPresupuesto(double precioVenta) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -149,6 +162,100 @@ public class Hospital {
     void descontarPresupuesto(double costo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+=======
+    public ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(ArrayList<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    public Nomina getNomina() {
+        return nomina;
+    }
+
+    public void setNomina(Nomina nomina) {
+        this.nomina = nomina;
+    }
+
+  
+    
+    // metodos crud de empleado
+    /**
+     * metodo agregar empleado
+     *
+     * @param e
+     * @return
+     */
+    public boolean agregarEmpleado(Empleado e) {
+        return this.empleados.add(e);
+
+    }
+
+    /**
+     * eliminar empleado por documento
+     *
+     * @param numeroDocumento
+     * @return
+     */
+    public boolean eliminarEmpleado(String numeroDocumento) {
+        for (int i = 0; i < empleados.size(); i++) {
+            if (empleados.get(i).getNumeroDocumento().equals(numeroDocumento)) {
+                empleados.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * merodo de buscar empleado por cedula
+     *
+     * @param numeroDocumento
+     * @return
+     */
+    public Empleado buscarEmpleadoPorDocumento(String numeroDocumento) {
+        for (Empleado empleado : empleados) {
+            if (empleado.getNumeroDocumento().equalsIgnoreCase(numeroDocumento)) {
+                return empleado;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * actualizar empleado
+     *
+     * @param numeroDocumento
+     * @param nuevoNombre
+     * @return
+     */
+    public boolean actualizarEmpleado(String numeroDocumento, String nuevoNombre) {
+        for (Empleado e : empleados) {
+            if (e.getNumeroDocumento().equals(numeroDocumento)) {
+                e.setNombre(nuevoNombre);
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * muestra la lista de empleados
+     * @return 
+     */
+    public String mostrarEmpleado() {
+        String lista = "";
+        for (int i = 0; i < this.empleados.size(); i++) {
+            Empleado e = this.empleados.get(i);
+            lista += e.toString() + "\n";
+        }
+        return lista;
+    }
+    
+    
+    //Metodos gestion de nomina 
+>>>>>>> ec8a76de2b1024d0aefb8711dfd14a5f7acc81a6
     
 
 }
