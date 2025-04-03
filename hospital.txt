@@ -1,0 +1,5 @@
+Nombre: Hospital San Jose St. Bonaventure
+Direccion: 2425 Samaritan Dr, San Jose, CA 95124 Estados Unidos
+Telefono: +1 408-559-2011
+Presupuesto: 1000000
+Fecha de Fundacion: 1965

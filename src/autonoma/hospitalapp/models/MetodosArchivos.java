@@ -76,7 +76,10 @@ public class MetodosArchivos {
              ex.printStackTrace();
         }
      }
-     
+     /**
+      * se crea metodo para mostrar archivos del directorio
+      * @param directorio 
+      */
      public void archivosDirectorio (String directorio){
          File f1 = new File (directorio);
          
