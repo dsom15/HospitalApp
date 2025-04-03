@@ -8,7 +8,11 @@ package autonoma.hospitalapp.models;
 import java.io.File;
 
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Se crea la clase Metodos Archivos
@@ -31,7 +35,24 @@ public class MetodosArchivos {
             }catch (FileNotFoundException ex){
                 ex.printStackTrace();
             }
-
+            
     }
+    /**
+     *  Metodo para escribir el archivo
+     * @param archivo
+     * @param texto 
+     */
+    public void escribirArchivo (String archivo,String texto){
+        File f1 = new File (archivo);
+        try {
+            PrintWriter pw= new PrintWriter (new FileWriter(f1,true));
+            pw.print(texto);
+            pw.close();
+            
+        } catch (IOException ex) {
+             ex.printStackTrace();
+        }
+    }
+    
     
 }
