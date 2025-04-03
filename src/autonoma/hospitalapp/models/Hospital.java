@@ -1,4 +1,3 @@
-
 package autonoma.hospitalapp.models;
 
 import java.util.ArrayList;
@@ -163,17 +162,20 @@ public class Hospital {
     // metodos crud de empleado
     /**
      * metodo agregar empleado
+     *
      * @param e
-     * @return 
+     * @return
      */
     public boolean agregarEmpleado(Empleado e) {
         return this.empleados.add(e);
 
     }
+
     /**
      * eliminar empleado por documento
+     *
      * @param numeroDocumento
-     * @return 
+     * @return
      */
     public boolean eliminarEmpleado(String numeroDocumento) {
         for (int i = 0; i < empleados.size(); i++) {
@@ -184,10 +186,12 @@ public class Hospital {
         }
         return false;
     }
+
     /**
-     * merodo de buscar empleado por cedula 
+     * merodo de buscar empleado por cedula
+     *
      * @param numeroDocumento
-     * @return 
+     * @return
      */
     public Empleado buscarEmpleadoPorDocumento(String numeroDocumento) {
         for (Empleado empleado : empleados) {
@@ -197,20 +201,31 @@ public class Hospital {
         }
         return null;
     }
+
     /**
-     * actualizar empleado 
+     * actualizar empleado
+     *
      * @param numeroDocumento
      * @param nuevoNombre
-     * @return 
+     * @return
      */
     public boolean actualizarEmpleado(String numeroDocumento, String nuevoNombre) {
         for (Empleado e : empleados) {
-            if (e.getNumeroDocumento().equals(numeroDocumento)) { 
+            if (e.getNumeroDocumento().equals(numeroDocumento)) {
                 e.setNombre(nuevoNombre);
                 return true;
             }
         }
         return false;
+    }
+
+    public String mostrarEmpleado() {
+        String lista = "";
+        for (int i = 0; i < this.empleados.size(); i++) {
+            Empleado e = this.empleados.get(i);
+            lista += e.toString() + "\n";
+        }
+        return lista;
     }
 
 }

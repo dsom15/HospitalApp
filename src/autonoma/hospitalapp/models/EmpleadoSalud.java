@@ -47,8 +47,8 @@ public class EmpleadoSalud extends Empleado {
      */
     @Override
     public double calcularSalario() {
-        double porcentajeSalud = 0.012; 
-        double salario = (getSalarioBase() * porcentajeSalud * horasTrabajadas) + getSalarioBase();
+        double salud = 0.012; 
+        double salario = (getSalarioBase() * salud * horasTrabajadas) + getSalarioBase();
         return salario;
     }
 
