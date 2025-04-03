@@ -4,6 +4,7 @@
  */
 package autonoma.hospitalapp.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -53,6 +54,16 @@ public class Hospital {
      * de la clase localizacion
      */
     private Localizacion localizacion;
+    /**
+     * lista de empleados
+     *
+     */
+    private ArrayList<Empleado> empleados;
+    /**
+     *
+     * clase empleado
+     */
+    private Empleado empleado;
 
     //Constructor
     public Hospital(double metaDeventasAnual, boolean estado, Gerente gerente, Localizacion localizacion) {
@@ -60,6 +71,7 @@ public class Hospital {
         this.estado = estado;
         this.gerente = gerente;
         this.localizacion = localizacion;
+        this.empleados = new ArrayList<>();
     }
 
     public Hospital() {
@@ -67,6 +79,7 @@ public class Hospital {
         this.estado = estado;
         this.gerente = gerente;
         this.localizacion = localizacion;
+        this.empleados = new ArrayList<>();
     }
 
     //Metodos de acceso 
@@ -141,6 +154,66 @@ public class Hospital {
     public void setLocalizacion(Localizacion localizacion) {
         this.localizacion = localizacion;
     }
-    
+
+    public ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(ArrayList<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    // metodos crud de empleado
+    /**
+     * metodo agregar empleado
+     * @param e
+     * @return 
+     */
+    public boolean agregarEmpleado(Empleado e) {
+        return this.empleados.add(e);
+
+    }
+    /**
+     * eliminar empleado por documento
+     * @param numeroDocumento
+     * @return 
+     */
+    public boolean eliminarEmpleado(String numeroDocumento) {
+        for (int i = 0; i < empleados.size(); i++) {
+            if (empleados.get(i).getNumeroDocumento().equals(numeroDocumento)) {
+                empleados.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * merodo de buscar empleado por cedula 
+     * @param numeroDocumento
+     * @return 
+     */
+    public Empleado buscarEmpleadoPorDocumento(String numeroDocumento) {
+        for (Empleado empleado : empleados) {
+            if (empleado.getNumeroDocumento().equalsIgnoreCase(numeroDocumento)) {
+                return empleado;
+            }
+        }
+        return null;
+    }
+    /**
+     * actualizar empleado 
+     * @param numeroDocumento
+     * @param nuevoNombre
+     * @return 
+     */
+    public boolean actualizarEmpleado(String numeroDocumento, String nuevoNombre) {
+        for (Empleado e : empleados) {
+            if (e.getNumeroDocumento().equals(numeroDocumento)) { 
+                e.setNombre(nuevoNombre);
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
