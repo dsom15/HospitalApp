@@ -4,12 +4,12 @@
  */
 package autonoma.hospitalapp.models;
 
-/**
- * Clase que contiene los medicamentos Genericos 
+/** Clase que representa un Medicamento Generico
+ * Contiene los medicamentos Genericos, 
  * Del Módulo de Farmarcia
  * @author Juan Esteban Vera Velez
  * Versión 1.0
- * @since 2025-04-02
+ * @since 2025-04-03
  */
   public class MedicamentoGenerico extends Medicamento {
     /**

@@ -24,22 +24,22 @@ package autonoma.hospitalapp.models;
     /**
      * Nombre del medicamento
      */
-    protected String nombre;
+       private String nombre;
     
     /**
      * Descripción del Medicamento
      */
-    protected String descripcion;
+       private String descripcion;
     
     /**
      * Costo del medicamento
      */
-    protected double costo;
+       private  double costo;
     
     /**
      * Precio de venta de los medicamentos
      */
-    protected double precioVenta;
+       protected double precioVenta;
     
     /**
      * Constructor de la clase Medicamento.
