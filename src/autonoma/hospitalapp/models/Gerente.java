@@ -6,7 +6,8 @@ package autonoma.hospitalapp.models;
 
 /**
  * @since 31/03/2025
- * @author Rafael versión 1.0
+ * versión 1.0
+ * @author Rafael 
  */
 public class Gerente {
 
