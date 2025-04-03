@@ -9,6 +9,9 @@ import java.util.Date;
 /**
  * Se crea la clase Hospital
  * @author Dsoch
+ * @since 2042025
+ * @version 1.0.0
+ * @
  */
 public class Hospital {
     //atributos 
