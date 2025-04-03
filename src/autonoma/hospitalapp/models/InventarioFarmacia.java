@@ -29,4 +29,35 @@ class InventarioFarmacia {
         this.medicamentos = new ArrayList<>();
         this.añoActualizacion = 2025;
     }
+    
+    /**
+     *  Método que Agrega un medicamento al inventario 
+     *  y descuenta su costo del presupuesto del hospital.
+     * 
+     * @param medicamento Medicamento a agregar.
+     * @param hospital Hospital al que se le descuenta el costo.
+     */
+    public void agregarMedicamento(Medicamento medicamento, Hospital hospital) {
+        medicamentos.add(medicamento);
+        hospital.descontarPresupuesto(medicamento.getCosto());
+    }
+
+     /**
+     * Vende un medicamento, aumentando el presupuesto del hospital.
+     * 
+     * @param nombre Nombre del medicamento a vender.
+     * @param hospital Hospital al que se le suma la venta.
+     */
+    public void venderMedicamento(String nombre, Hospital hospital) {
+        for (Medicamento medicamento : medicamentos) {
+            if (medicamento.getNombre().equalsIgnoreCase(nombre)) {
+                hospital.aumentarPresupuesto(medicamento.getPrecioVenta());
+                medicamentos.remove(medicamento);
+                break;
+            }
+        }
+    }
 }
+
+}
+
