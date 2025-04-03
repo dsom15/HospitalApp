@@ -40,4 +40,62 @@ package autonoma.hospitalapp.models;
      * Precio de venta de los medicamentos
      */
     protected double precioVenta;
- }
+    
+    /**
+     * Constructor de la clase Medicamento.
+     * 
+     * @param nombre Nombre del medicamento.
+     * @param descripcion Descripción del medicamento.
+     * @param costo Costo del medicamento.
+     */
+    public Medicamento(String nombre, String descripcion, double costo) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.costo = costo;
+        calcularPrecioVenta();
+    }
+
+    /**
+     * Obtiene el nombre del medicamento.
+     * 
+     * @return Nombre del medicamento.
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * Obtiene la descripción del medicamento.
+     * 
+     * @return Descripción del medicamento.
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * Obtiene el costo del medicamento.
+     * 
+     * @return Costo del medicamento.
+     */
+    public double getCosto() {
+        return costo;
+    }
+
+    /**
+     * Obtiene el precio de venta del medicamento.
+     * 
+     * @return Precio de venta.
+     */
+    public double getPrecioVenta() {
+        return precioVenta;
+    }
+    
+    /**
+     * Método abstracto para calcular el precio de venta del medicamento.
+     */
+    protected abstract void calcularPrecioVenta();
+
+}
+
+ 
