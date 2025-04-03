@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package autonoma.hospitalapp.models;
 
 import java.util.ArrayList;
@@ -25,16 +22,21 @@ import java.util.ArrayList;
       * edad del empleado
       */
      private int edad;
-     /**
-      * salario base del empleado
-      */
+
+    /**
+     * salario base del empleado
+     */
+   
+
      private final double salarioBase=20000;
+     private double salario;
      
      //constructor
     public Empleado(String nombre, String numeroDocumento, int edad) {
         this.nombre = nombre;
         this.numeroDocumento = numeroDocumento;
         this.edad = edad;
+        this.salario = salario;
        
     }
     // metodo de acceso
@@ -60,6 +62,17 @@ import java.util.ArrayList;
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+     public double getSalarioBase() {
+        return salarioBase;
     }
     
     
