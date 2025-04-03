@@ -141,6 +141,14 @@ public class Hospital {
     public void setLocalizacion(Localizacion localizacion) {
         this.localizacion = localizacion;
     }
+
+    void aumentarPresupuesto(double precioVenta) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void descontarPresupuesto(double costo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 
 }
