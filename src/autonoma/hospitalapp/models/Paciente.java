@@ -4,35 +4,34 @@
  */
 package autonoma.hospitalapp.models;
 
+import autonoma.hospitalapp.exceptions.MalaFormulacionException;
 import java.util.ArrayList;
 import java.util.List;
 
 //import excepciones.MalaFormulacionException;//
-
-
 /**
- *@since 02/04/2025
- * versión 1.0
+ * @since 02/04/2025 versión 1.1
  * @author Rafael
  */
 public class Paciente {
+
     private String nombre;
     private int numeroDeDocumento;
     private int edad;
     private String correo;
     private String telefono;
-    private boolean estado; 
+    private boolean estado;
     private List<Enfermedad> enfermedades = new ArrayList<>();
     private List<Medicina> medicinas = new ArrayList<>();
 
-    public Paciente(String nombre, int numeroDeDocumento, int edad, 
-                   String correo, String telefono) {
+    public Paciente(String nombre, int numeroDeDocumento, int edad,
+            String correo, String telefono) {
         this.nombre = nombre;
         this.numeroDeDocumento = numeroDeDocumento;
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
-        this.estado = true; 
+        this.estado = true;
     }
 
     public String getNombre() {
@@ -92,7 +91,21 @@ public class Paciente {
         actualizarEstado();
     }
 
-    
+    public void curarEnfermedad(Medicina medicina, String nombreEnfermedad)
+            throws MalaFormulacionException {
+        Enfermedad enfermedad = buscarEnfermedad(nombreEnfermedad);
+        if (enfermedad == null) {
+            throw new MalaFormulacionException("El paciente no tiene la enfermedad: " + nombreEnfermedad);
+        }
+
+        if (medicinaYaRecetada(medicina.getNombre())) {
+            throw new MalaFormulacionException("La medicina ya fue recetada: " + medicina.getNombre());
+        }
+
+        enfermedades.remove(enfermedad);
+        medicinas.add(medicina);
+        actualizarEstado();
+    }
 
     private Enfermedad buscarEnfermedad(String nombre) {
         for (Enfermedad e : enfermedades) {
