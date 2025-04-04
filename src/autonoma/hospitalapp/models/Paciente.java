@@ -13,7 +13,7 @@ import java.util.List;
 /**
  *@since 02/04/2025
  * versión 1.0
- * @author rafae
+ * @author Rafael
  */
 public class Paciente {
     private String nombre;
@@ -92,21 +92,7 @@ public class Paciente {
         actualizarEstado();
     }
 
-    public void curarEnfermedad(Medicina medicina, String nombreEnfermedad) 
-            throws MalaFormulacionException {
-        Enfermedad enfermedad = buscarEnfermedad(nombreEnfermedad);
-        if (enfermedad == null) {
-            throw new MalaFormulacionException("El paciente no tiene la enfermedad: " + nombreEnfermedad);
-        }
-        
-        if (medicinaYaRecetada(medicina.getNombre())) {
-            throw new MalaFormulacionException("La medicina ya fue recetada: " + medicina.getNombre());
-        }
-        
-        enfermedades.remove(enfermedad);
-        medicinas.add(medicina);
-        actualizarEstado();
-    }
+    
 
     private Enfermedad buscarEnfermedad(String nombre) {
         for (Enfermedad e : enfermedades) {
