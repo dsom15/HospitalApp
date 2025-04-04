@@ -13,6 +13,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.in;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -62,25 +64,26 @@ public class MetodosArchivos {
     }
 
     /**
-     * se crea el metodo leer archivo
+     * se crea el metodo leer archivo se almacena en un array la informacion
      *
      * @param archivo
      */
-    public void leerArchivo(String archivo) {
+    public List<String> leerArchivo(String archivo) {
+        List<String> lineas = new ArrayList<>();
         File f1 = new File(archivo);
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(archivo));
-            String leer = br.readLine();
-            while (leer != null) {
-                System.out.println(leer);
-                leer = br.readLine();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(f1))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineas.add(linea);
             }
-            br.close();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
+        return lineas;
     }
 
     /**
@@ -101,7 +104,7 @@ public class MetodosArchivos {
     /**
      * Metodo para guardar la informacion de la nomina en un archivo
      *
-     * @param archivo 
+     * @param archivo
      * @param nomina
      */
     public void guardarNomina(String archivo, Nomina nomina) {
@@ -123,6 +126,110 @@ public class MetodosArchivos {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    /**
+     * metodo para asignar los atributos del archivo hospital a la clase hospital
+     * @param archivo
+     * @return el obnejto hospital
+     */
+    public Hospital asignarAtributosHospital (String archivo) {
+        Hospital hospital = new Hospital();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(archivo));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(": ");
+                if (partes.length == 2) {
+                    switch (partes[0]) {
+                        case "Nombre":
+                            hospital.setNombre(partes[1]);
+                            break;
+                        case "Direccion":
+                            hospital.setDireccion(partes[1]);
+                            break;
+                        case "Telefono":
+                            hospital.setTelefono(partes[1]);
+                            break;
+                        case "Presupuesto":
+                            hospital.setPresupuesto(Double.parseDouble(partes[1]));
+                            break;
+                        case "Fecha de Fundacion":
+                            hospital.setFechaFundacion(partes[1]);
+                            break;
+                    }
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return hospital;
+    }
+
+    /**
+     *  metodo para asignar los atributos del archivo gerente a la clase gerente
+     * @param archivo
+     * @return el objeto gerente 
+     */
+    public Gerente asignarAtributosGerente(String archivo) {
+        Gerente gerente = new Gerente();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(archivo));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(": ");
+                if (partes.length == 2) {
+                    switch (partes[0]) {
+                        case "Nombre":
+                            gerente.setNombre(partes[1]);
+                            break;
+                        case "Numero de documento":
+                            gerente.setDocumentoIdentidad(partes[1]);
+                            break;
+                        case "Edad":
+                            gerente.setEdad(Integer.parseInt(partes[1]));
+                            break;
+                        case "Carrera":
+                            gerente.setCarrera(partes[1]);
+                            break;
+                    }
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return gerente;
+    }
+    /**
+     * metodo para asignar los atributos del archivo localizacion a la clase localizacion
+     * @param archivo
+     * @return el objeto localizacion
+     */
+    public Localizacion asignarAtributosLocalizacion(String archivo) {
+        Localizacion localizacion = new Localizacion();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(archivo));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(": ");
+                if (partes.length == 2) {
+                    switch (partes[0]) {
+                        case "Latitud":
+                            localizacion.setLatitud(Double.parseDouble(partes[1]));
+                            break;
+                        case "Longitud":
+                            localizacion.setLongitud(Double.parseDouble(partes[1]));
+                            break;
+                    }
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return localizacion;
     }
 
 }

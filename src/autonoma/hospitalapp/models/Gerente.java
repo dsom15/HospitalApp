@@ -22,6 +22,13 @@ public class Gerente {
         this.edad = edad;
         this.carrera = carrera;
     }
+    
+     public Gerente() {
+        this.nombre = nombre;
+        this.documentoIdentidad = documentoIdentidad;
+        this.edad = edad;
+        this.carrera = carrera;
+    }
 
     public void actualizarDatos(String nombre, String documentoIdentidad, int edad, String carrera) {
         this.nombre = nombre;

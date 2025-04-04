@@ -1,7 +1,9 @@
 package autonoma.hospitalapp.main;
 
+import autonoma.hospitalapp.models.Gerente;
 import autonoma.hospitalapp.models.MetodosArchivos;
 import autonoma.hospitalapp.models.Hospital;
+import autonoma.hospitalapp.models.Localizacion;
 import autonoma.hospitalapp.models.Nomina;
 
 /**
@@ -23,7 +25,6 @@ public class HospitalApp {
         String archivoLocalizacion = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\localizacion.txt";
         String archivoGerente = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\gerente.txt";
         String archivoNomina = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\nomina.txt";
-        
 
         MetodosArchivos ma = new MetodosArchivos();
         /**
@@ -36,7 +37,7 @@ public class HospitalApp {
         ma.escribirArchivo(archivoHospital, "Presupuesto: 1000000\n");
         ma.escribirArchivo(archivoHospital, "Fecha de Fundacion: 1965\n");
 
-        ma.leerArchivo(archivoHospital);
+        
 
         /**
          * se crea el archivo localizacion
@@ -56,9 +57,12 @@ public class HospitalApp {
         /**
          * se crea el archivo para la nomina
          */
-        
-       // ma.guardarNomina(archivoNomina, nomina);
 
+        // ma.guardarNomina(archivoNomina, nomina);
+        Hospital hospital = ma.asignarAtributosHospital(archivoHospital);
+        Gerente gerente =   ma.asignarAtributosGerente(archivoGerente);
+        Localizacion localizacion =   ma.asignarAtributosLocalizacion(archivoLocalizacion);
+        
     }
 
 }
