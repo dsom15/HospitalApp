@@ -1,6 +1,8 @@
 package autonoma.hospitalapp.main;
 
 import autonoma.hospitalapp.models.MetodosArchivos;
+import autonoma.hospitalapp.models.Hospital;
+import autonoma.hospitalapp.models.Nomina;
 
 /**
  * Se crea el main
@@ -20,6 +22,8 @@ public class HospitalApp {
         String directorio = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp";
         String archivoLocalizacion = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\localizacion.txt";
         String archivoGerente = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\gerente.txt";
+        String archivoNomina = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\nomina.txt";
+        
 
         MetodosArchivos ma = new MetodosArchivos();
         /**
@@ -49,8 +53,11 @@ public class HospitalApp {
         ma.escribirArchivo(archivoGerente, "Numero de documento: 84.941.564\n");
         ma.escribirArchivo(archivoGerente, "Edad: 69\n");
         ma.escribirArchivo(archivoGerente, "Carrera: Neurocirujano\n");
+        /**
+         * se crea el archivo para la nomina
+         */
         
-
+       // ma.guardarNomina(archivoNomina, nomina);
 
     }
 

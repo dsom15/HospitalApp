@@ -36,7 +36,7 @@ import java.util.ArrayList;
         this.nombre = nombre;
         this.numeroDocumento = numeroDocumento;
         this.edad = edad;
-        this.salario = salario;
+        this.salario = salarioBase;
        
     }
     // metodo de acceso
