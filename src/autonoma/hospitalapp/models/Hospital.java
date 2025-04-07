@@ -159,7 +159,7 @@ public class Hospital {
         this.presupuesto += precioVenta;
     }
 
-    public void descontarPresupuesto(double costo) {
+      public void descontarPresupuesto(double costo) {
         this.presupuesto -= costo;
     }
     public ArrayList<Empleado> getEmpleados() {
