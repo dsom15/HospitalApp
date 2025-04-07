@@ -14,7 +14,7 @@ import java.util.List;
  * @since 2025-04-03
  */
 
-class InventarioFarmacia {
+ public class InventarioFarmacia {
     
     /** Lista de medicamentos en el inventario */
     private List<Medicamento> medicamentos;
@@ -30,12 +30,14 @@ class InventarioFarmacia {
         this.añoActualizacion = 2025;
     }
     
+    
     /**
      *  Método que Agrega un medicamento al inventario 
      *  y descuenta su costo del presupuesto del hospital.
      * 
      * @param medicamento Medicamento a agregar.
      * @param hospital Hospital al que se le descuenta el costo.
+     * ( Hospital San José St. Bonaventure )
      */
     public void agregarMedicamento(Medicamento medicamento, Hospital hospital) {
         medicamentos.add(medicamento);
@@ -47,6 +49,7 @@ class InventarioFarmacia {
      * 
      * @param nombre Nombre del medicamento a vender.
      * @param hospital Hospital al que se le suma la venta.
+     * ( Hospital San José St. Bonaventure )
      */
     public void venderMedicamento(String nombre, Hospital hospital) {
         for (Medicamento medicamento : medicamentos) {
@@ -59,5 +62,5 @@ class InventarioFarmacia {
     }
 }
 
-}
+
 

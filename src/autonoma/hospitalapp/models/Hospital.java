@@ -155,12 +155,12 @@ public class Hospital {
         this.localizacion = localizacion;
     }
 
-    void aumentarPresupuesto(double precioVenta) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      public void aumentarPresupuesto(double precioVenta) {
+        this.presupuesto += precioVenta;
     }
 
-    void descontarPresupuesto(double costo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void descontarPresupuesto(double costo) {
+        this.presupuesto -= costo;
     }
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
@@ -183,7 +183,7 @@ public class Hospital {
      * metodo agregar empleado
      *
      * @param e
-     * @return
+     * @return e
      */
     public boolean agregarEmpleado(Empleado e) {
         return this.empleados.add(e);
@@ -194,7 +194,7 @@ public class Hospital {
      * eliminar empleado por documento
      *
      * @param numeroDocumento
-     * @return
+     * @return true o false
      */
     public boolean eliminarEmpleado(String numeroDocumento) {
         for (int i = 0; i < empleados.size(); i++) {
@@ -210,7 +210,7 @@ public class Hospital {
      * merodo de buscar empleado por cedula
      *
      * @param numeroDocumento
-     * @return
+     * @return empleado
      */
     public Empleado buscarEmpleadoPorDocumento(String numeroDocumento) {
         for (Empleado empleado : empleados) {
@@ -226,7 +226,7 @@ public class Hospital {
      *
      * @param numeroDocumento
      * @param nuevoNombre
-     * @return
+     * @return true o false
      */
     public boolean actualizarEmpleado(String numeroDocumento, String nuevoNombre) {
         for (Empleado e : empleados) {
@@ -252,7 +252,10 @@ public class Hospital {
         return lista;
     }
 
-    //Metodos gestion de nomina 
+    /**
+     * Métodos de gestión nomina
+     * @throws DeclararQuiebraException 
+     */
     public void procesarNomina() throws DeclararQuiebraException {
         try {
             this.nomina.generarNomina(); 

@@ -91,7 +91,6 @@ public class Paciente {
         enfermedades.add(enfermedad);
         actualizarEstado();
     }
-
     
 
     private Enfermedad buscarEnfermedad(String nombre) {

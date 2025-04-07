@@ -74,7 +74,7 @@ public class Nomina {
     }
 
     /**
-     * metodo para calcular el salario
+     * Método para calcular el salario
      *
      * @return salario total de los trabajadores
      */
@@ -87,7 +87,7 @@ public class Nomina {
     }
 
     /**
-     * merodo para generar la nomina de los empleados y descontarla del
+     * Método para generar la nomina de los empleados y descontarla del
      * presupuesto
      *
      * @param hospital
@@ -100,7 +100,7 @@ public class Nomina {
         this.fecha = new Date();
     }
     /**
-     * metodo para descontar el salrio del presupuesto
+     * Método para descontar el salrio del presupuesto
      * @param hospital
      * @throws DeclararQuiebraException 
      */
