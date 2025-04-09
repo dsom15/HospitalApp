@@ -15,7 +15,11 @@ import java.util.List;
  */
 
  public class InventarioFarmacia {
-    
+    /**
+     * Codigo identificador único del inventario
+     */
+     private int codigo;
+     
     /** Lista de medicamentos en el inventario */
     private List<Medicamento> medicamentos;
     

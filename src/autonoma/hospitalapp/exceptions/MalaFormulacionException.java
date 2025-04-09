@@ -10,7 +10,11 @@ package autonoma.hospitalapp.exceptions;
  * @author Rafael
  */
 public class MalaFormulacionException extends Exception {
-    // Constructor
+    
+    /**
+     * Excepción cuando hay un erro en la formulación meidca
+     * @param mensaje 
+     */
     public MalaFormulacionException(String mensaje) {
         super("Error en la formulación médica:");
     }
