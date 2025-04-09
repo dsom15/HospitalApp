@@ -5,6 +5,7 @@ import autonoma.hospitalapp.models.MetodosArchivos;
 import autonoma.hospitalapp.models.Hospital;
 import autonoma.hospitalapp.models.Localizacion;
 import autonoma.hospitalapp.models.Nomina;
+import autonoma.hospitalapp.views.VentanaPrincipal;
 
 /**
  * Se crea el main
@@ -62,6 +63,9 @@ public class HospitalApp {
         Hospital hospital = ma.asignarAtributosHospital(archivoHospital);
         Gerente gerente =   ma.asignarAtributosGerente(archivoGerente);
         Localizacion localizacion =   ma.asignarAtributosLocalizacion(archivoLocalizacion);
+        
+        VentanaPrincipal ventana = new VentanaPrincipal(hospital);
+        ventana.setVisible(true);
         
     }
 

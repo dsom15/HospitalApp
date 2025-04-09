@@ -4,18 +4,36 @@
  */
 package autonoma.hospitalapp.views;
 
+import autonoma.hospitalapp.models.Empleado;
+import autonoma.hospitalapp.models.Hospital;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Dsoch
  */
 public class ModuloEmpleado extends javax.swing.JDialog {
+   private Hospital  hospital;
+   private VentanaPrincipal ventanaPrincipal;
+   private Empleado  empleado;
+
 
     /**
      * Creates new form ModuloEmpleado
      */
-    public ModuloEmpleado(java.awt.Frame parent, boolean modal) {
+    public ModuloEmpleado(java.awt.Frame parent, boolean modal, Hospital hospital,VentanaPrincipal ventana) {
         super(parent, modal);
         initComponents();
+         initComponents();
+        this.setLocationRelativeTo(null);
+        try{
+            this.setIconImage(new ImageIcon(getClass().getResource("/autonoma/HospitalApp/images/logoH.png")).getImage());
+        }catch (Exception e){
+            
+        }
+        this.hospital = hospital;
+        this.ventanaPrincipal = ventana;
+        this.empleado = empleado;
     }
 
     /**
@@ -43,7 +61,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnAgregarEmpleado = new javax.swing.JButton();
-        btnAgregarEmpleado1 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -56,7 +74,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(75, 75, 75)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -103,12 +121,12 @@ public class ModuloEmpleado extends javax.swing.JDialog {
             }
         });
 
-        btnAgregarEmpleado1.setBackground(new java.awt.Color(0, 0, 0));
-        btnAgregarEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarEmpleado1.setText("VOLVER");
-        btnAgregarEmpleado1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setBackground(new java.awt.Color(0, 0, 0));
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("VOLVER");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarEmpleado1ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -135,7 +153,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
                                 .addGap(8, 8, 8)
                                 .addComponent(btnAgregarEmpleado)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAgregarEmpleado1)
+                                .addComponent(btnSalir)
                                 .addGap(13, 13, 13)))))
                 .addGap(104, 104, 104))
         );
@@ -162,7 +180,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarEmpleado)
-                    .addComponent(btnAgregarEmpleado1))
+                    .addComponent(btnSalir))
                 .addGap(29, 29, 29))
         );
 
@@ -188,15 +206,15 @@ public class ModuloEmpleado extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
-    private void btnAgregarEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleado1ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarEmpleado1ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarEmpleado;
-    private javax.swing.JButton btnAgregarEmpleado1;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
