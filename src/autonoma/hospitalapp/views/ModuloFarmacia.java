@@ -4,6 +4,7 @@
  */
 package autonoma.hospitalapp.views;
 import autonoma.hospitalapp.models.Medicamento;
+import java.awt.Frame;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -24,7 +25,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     /**
      * Creates new form ModuloFarmacia
      */
-    public ModuloFarmacia(Frame parent, boolean modal, Nombre nombre, VentanaPrincipal ventanaPrincipal) {
+    public ModuloFarmacia(Frame parent, boolean modal, Nombre nombre, VentanaPrincipal ventanaPrincipa,Descripcion descripcion , Costo costo, PrecioVenta  precioVenta) {
         super(parent, modal);
         initComponents();
          try{
@@ -49,8 +50,8 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     }
         
     String tipoSeleccionado = (String) jComboBox1.getSelectedItem();
-     if ("Seleccione tipo de medicamento".equals(tipoSeleccionado)) {
-     JOptionPane.showMessageDialog(this, "Por favor, seleccione un tipo de medicamento válido.");
+      if ("Seleccione tipo de medicamento".equals(tipoSeleccionado)) {
+      JOptionPane.showMessageDialog(this, "Por favor, seleccione un tipo de medicamento válido.");
     return;
 }
 
@@ -196,7 +197,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Tipo  : ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione tipo de medicmaneto", "Generico", "Marca" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione tipo de medicamento", "Generico", "Marca" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
