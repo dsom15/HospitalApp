@@ -28,15 +28,16 @@ import java.util.ArrayList;
      */
    
 
-     private final double salarioBase=20000;
+     private  double salarioBase;
+     
      private double salario;
      
      //constructor
-    public Empleado(String nombre, String numeroDocumento, int edad) {
+    public Empleado(String nombre, String numeroDocumento, int edad,double salarioBase) {
         this.nombre = nombre;
         this.numeroDocumento = numeroDocumento;
         this.edad = edad;
-        this.salario = salarioBase;
+        this.salarioBase = salarioBase;
        
     }
     // metodo de acceso
@@ -64,15 +65,13 @@ import java.util.ArrayList;
         this.edad = edad;
     }
 
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
+ 
      public double getSalarioBase() {
         return salarioBase;
+    }
+
+    public void setSalarioBase(double salarioBase) {
+        this.salarioBase = salarioBase;
     }
     
     

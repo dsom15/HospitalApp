@@ -20,8 +20,8 @@ public class EmpleadoSalud extends Empleado {
      */
     private double horasTrabajadas;
     // Constructor
-    public EmpleadoSalud(String especialiad, double horasTrabajadas, String nombre, String numeroDocumento, int edad) {
-        super(nombre, numeroDocumento, edad);
+    public EmpleadoSalud(String especialiad, double horasTrabajadas, String nombre, String numeroDocumento, int edad,double salarioBase) {
+        super(nombre, numeroDocumento, edad,salarioBase);
         this.especialiad = especialiad;
         this.horasTrabajadas = horasTrabajadas;
     }

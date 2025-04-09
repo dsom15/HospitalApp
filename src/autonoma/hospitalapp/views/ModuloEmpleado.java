@@ -5,31 +5,34 @@
 package autonoma.hospitalapp.views;
 
 import autonoma.hospitalapp.models.Empleado;
+import autonoma.hospitalapp.models.EmpleadoOperativo;
+import autonoma.hospitalapp.models.EmpleadoSalud;
 import autonoma.hospitalapp.models.Hospital;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Dsoch
  */
 public class ModuloEmpleado extends javax.swing.JDialog {
-   private Hospital  hospital;
-   private VentanaPrincipal ventanaPrincipal;
-   private Empleado  empleado;
 
+    private Hospital hospital;
+    private VentanaPrincipal ventanaPrincipal;
+    private Empleado empleado;
 
     /**
      * Creates new form ModuloEmpleado
      */
-    public ModuloEmpleado(java.awt.Frame parent, boolean modal, Hospital hospital,VentanaPrincipal ventana) {
+    public ModuloEmpleado(java.awt.Frame parent, boolean modal, Hospital hospital, VentanaPrincipal ventana) {
         super(parent, modal);
         initComponents();
-         initComponents();
+        initComponents();
         this.setLocationRelativeTo(null);
-        try{
+        try {
             this.setIconImage(new ImageIcon(getClass().getResource("/autonoma/HospitalApp/images/logoH.png")).getImage());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
         this.hospital = hospital;
         this.ventanaPrincipal = ventana;
@@ -45,23 +48,31 @@ public class ModuloEmpleado extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        txtNombre3 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtNombre = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtNombre1 = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtNombre2 = new javax.swing.JTextPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        txtNombre3 = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnAgregarEmpleado = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        txtNumeroDocumento = new javax.swing.JTextField();
+        txtEdad = new javax.swing.JTextField();
+        txtSalarioBase = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jList1);
+
+        txtNombre3.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,7 +87,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,18 +98,6 @@ public class ModuloEmpleado extends javax.swing.JDialog {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtNombre.setBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setViewportView(txtNombre);
-
-        txtNombre1.setBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane2.setViewportView(txtNombre1);
-
-        txtNombre2.setBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane3.setViewportView(txtNombre2);
-
-        txtNombre3.setBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane4.setViewportView(txtNombre3);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("NOMBRE  ");
@@ -130,58 +129,69 @@ public class ModuloEmpleado extends javax.swing.JDialog {
             }
         });
 
+        txtNumeroDocumento.setBackground(new java.awt.Color(204, 204, 204));
+        txtNumeroDocumento.setForeground(new java.awt.Color(153, 153, 153));
+
+        txtEdad.setBackground(new java.awt.Color(204, 204, 204));
+        txtEdad.setForeground(new java.awt.Color(153, 153, 153));
+
+        txtSalarioBase.setBackground(new java.awt.Color(204, 204, 204));
+        txtSalarioBase.setForeground(new java.awt.Color(153, 153, 153));
+
+        txtNombre.setBackground(new java.awt.Color(204, 204, 204));
+        txtNombre.setForeground(new java.awt.Color(153, 153, 153));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSalarioBase, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(btnAgregarEmpleado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSalir)
-                                .addGap(13, 13, 13)))))
-                .addGap(104, 104, 104))
+                        .addComponent(btnAgregarEmpleado)
+                        .addGap(175, 175, 175)
+                        .addComponent(btnSalir))
+                    .addComponent(txtNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarEmpleado)
-                    .addComponent(btnSalir))
-                .addGap(29, 29, 29))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 141, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtSalarioBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAgregarEmpleado)
+                            .addComponent(btnSalir))
+                        .addGap(29, 29, 29))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,14 +213,80 @@ public class ModuloEmpleado extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoActionPerformed
-        // TODO add your handling code here:
+        String nombre = this.txtNombre.getText().trim();
+        String numeroDocumento = this.txtNumeroDocumento.getText().trim();
+        String edadTexto = this.txtEdad.getText().trim();
+        String salarioBaseTexto = this.txtSalarioBase.getText().trim();
+
+    // Validar campos vacios
+        if (nombre.isEmpty() || numeroDocumento.isEmpty() || edadTexto.isEmpty() || salarioBaseTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.");
+            return;
+        }
+
+        try {
+            int edad = Integer.parseInt(edadTexto);
+            double salarioBase = Double.parseDouble(salarioBaseTexto);
+
+            // Elegir tipo de empleado
+            String[] opciones = {"Operativo", "Salud"};
+            int tipoEmpleado = JOptionPane.showOptionDialog(this, "Seleccione el tipo de empleado:",
+                    "Tipo de Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, opciones, opciones[0]);
+
+            Empleado empleado;
+
+            if (tipoEmpleado == 0) { 
+                String areaTrabajo = JOptionPane.showInputDialog(this, "Ingrese el area de trabajo:");
+                if (areaTrabajo == null || areaTrabajo.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Area de trabajo no puede estar vacia.");
+                    return;
+                }
+                empleado = new EmpleadoOperativo(areaTrabajo, nombre, numeroDocumento, edad,salarioBase);
+
+            } else if (tipoEmpleado == 1) { 
+                String especialidad = JOptionPane.showInputDialog(this, "Ingrese la especialidad:");
+                if (especialidad == null || especialidad.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Especialidad no puede estar vacia.");
+                    return;
+                }
+                String horasTexto = JOptionPane.showInputDialog(this, "Ingrese las horas trabajadas:");
+                if (horasTexto == null || horasTexto.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Debe ingresar las horas trabajadas.");
+                    return;
+                }
+
+                double horasTrabajadas;
+                try {
+                    horasTrabajadas = Double.parseDouble(horasTexto);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Ingrese un numero valido para horas trabajadas.");
+                    return;
+                }
+
+                empleado = new EmpleadoSalud(especialidad, horasTrabajadas, nombre, numeroDocumento, edad,salarioBase);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Operación cancelada.");
+                return;
+            }
+
+            if (this.hospital.agregarEmpleado(empleado)) {
+                JOptionPane.showMessageDialog(this, "Empleado " + nombre + " agregado exitosamente.");
+                this.dispose(); 
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el empleado.");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Edad y salario deben ser valores numericos validos.");
+        }
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarEmpleado;
@@ -220,15 +296,14 @@ public class ModuloEmpleado extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextPane txtNombre;
-    private javax.swing.JTextPane txtNombre1;
-    private javax.swing.JTextPane txtNombre2;
-    private javax.swing.JTextPane txtNombre3;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextField txtEdad;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombre3;
+    private javax.swing.JTextField txtNumeroDocumento;
+    private javax.swing.JTextField txtSalarioBase;
     // End of variables declaration//GEN-END:variables
 }

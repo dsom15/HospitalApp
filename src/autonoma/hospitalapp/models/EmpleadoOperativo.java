@@ -13,8 +13,8 @@ public class EmpleadoOperativo  extends Empleado {
      */
     private String areaTrabajo;
     //Constructor
-    public EmpleadoOperativo(String areaTrabajo, String nombre, String numeroDocumento, int edad) {
-        super(nombre, numeroDocumento, edad);
+    public EmpleadoOperativo(String areaTrabajo, String nombre, String numeroDocumento, int edad,double salarioBase) {
+        super(nombre, numeroDocumento, edad,salarioBase);
         this.areaTrabajo = areaTrabajo;
     }
     //Metodo de acceso
