@@ -295,7 +295,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPacientesMouseClicked
 
     private void btnFarmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFarmaciaMouseClicked
-        // le toca a juanes 
+        ModuloFarmacia VentanaModuloFarmacia = new ModuloFarmacia(this, true, this.hospital,this);
+        VentanaModuloFarmacia.setVisible(true);
     }//GEN-LAST:event_btnFarmaciaMouseClicked
 
     private void btnInformacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseClicked
