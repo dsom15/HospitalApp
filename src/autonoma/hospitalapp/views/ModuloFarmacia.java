@@ -28,9 +28,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     /**
      * Creates new form ModuloFarmacia
      */
-
     public ModuloFarmacia(Frame parent, boolean modal,  Hospital hospital,VentanaPrincipal ventanaPrincipal) {
-
         super(parent, modal);
         initComponents();
         try {
@@ -204,12 +202,6 @@ public class ModuloFarmacia extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Precio de Venta : ");
 
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Tipo  : ");
 
@@ -321,7 +313,11 @@ public class ModuloFarmacia extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                 .addGap(0, 615, Short.MAX_VALUE))
+=======
+                .addGap(0, 645, Short.MAX_VALUE))
+>>>>>>> 5f7e3a0f076131766e794532e740e06921047eb3
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,6 +382,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnAgregarMedicamentoActionPerformed
 
+<<<<<<< HEAD
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         
     }//GEN-LAST:event_txtNombreActionPerformed
@@ -403,6 +400,8 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnVenderMedicamentoActionPerformed
 
+=======
+>>>>>>> 5f7e3a0f076131766e794532e740e06921047eb3
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarMedicamento;
