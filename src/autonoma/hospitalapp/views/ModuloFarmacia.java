@@ -27,7 +27,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     /**
      * Creates new form ModuloFarmacia
      */
-    public ModuloFarmacia(Frame parent, boolean modal, VentanaPrincipal ventanaPrincipa, Hospital hospital) {
+    public ModuloFarmacia(Frame parent, boolean modal,  Hospital hospital,VentanaPrincipal ventanaPrincipal) {
         super(parent, modal);
         initComponents();
         try {
