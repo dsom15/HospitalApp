@@ -1,6 +1,7 @@
 package autonoma.hospitalapp.models;
 
 import autonoma.hospitalapp.exceptions.DeclararQuiebraException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -265,5 +266,22 @@ public class Hospital {
             throw e;
         }
     }
+    
+    public void leerDesdeArchivo(String ruta) {
+    Lector lector = new LectorArchivoTextoPlano();
+    try {
+        ArrayList<String> archivo = lector.leer(ruta);
+        for (String linea : archivo) {
+            String[] partes = linea.split(";");
+            this.nombre = partes[0];
+            this.direccion = partes[1];
+            this.telefono = partes[2];
+            this.presupuesto = Double.parseDouble(partes[3]);
+            this.fechaFundacion = partes[4];
+        }
+    } catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+        System.err.println("Error al leer archivo del hospital: " + e.getMessage());
+    }
+}
 
 }
