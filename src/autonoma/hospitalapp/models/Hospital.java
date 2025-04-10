@@ -267,8 +267,6 @@ public class Hospital {
         }
     }
     
-<<<<<<< HEAD
-=======
     public void leerDesdeArchivo(String ruta) {
     Lector lector = new LectorArchivoTextoPlano();
     try {
@@ -285,6 +283,6 @@ public class Hospital {
         System.err.println("Error al leer archivo del hospital: " + e.getMessage());
     }
 }
->>>>>>> 5f7e3a0f076131766e794532e740e06921047eb3
+
 
 }
