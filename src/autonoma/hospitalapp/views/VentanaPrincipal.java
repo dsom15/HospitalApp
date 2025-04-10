@@ -5,6 +5,7 @@
 package autonoma.hospitalapp.views;
 
 import autonoma.hospitalapp.models.Hospital;
+import autonoma.hospitalapp.models.Medicamento;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -359,4 +360,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    void agregarMedicamento(Medicamento medicamento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
