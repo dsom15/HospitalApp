@@ -25,7 +25,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     /**
      * Creates new form ModuloFarmacia
      */
-    public ModuloFarmacia(Frame parent, boolean modal, Nombre nombre, VentanaPrincipal ventanaPrincipa,Descripcion descripcion , Costo costo, PrecioVenta  precioVenta) {
+    public ModuloFarmacia(Frame parent, boolean modal, Nombre nombre, VentanaPrincipal ventanaPrincipal) {
         super(parent, modal);
         initComponents();
          try{
@@ -300,7 +300,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 645, Short.MAX_VALUE))
+                .addGap(0, 642, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
