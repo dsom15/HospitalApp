@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package autonoma.hospitalapp.views;
+
+import autonoma.hospitalapp.models.Hospital;
 import autonoma.hospitalapp.models.Medicamento;
+import autonoma.hospitalapp.models.MedicamentoGenerico;
+import autonoma.hospitalapp.models.MedicamentoMarca;
 import java.awt.Frame;
 
 import javax.swing.ImageIcon;
@@ -15,45 +19,36 @@ import javax.swing.JOptionPane;
  * @author Juan Esteban Vera Velez
  */
 public class ModuloFarmacia extends javax.swing.JDialog {
-    
+
     private VentanaPrincipal ventanaPrincipal;
     private JComboBox<String> comboTipo;
-    private Nombre nombre;
-    private Descripcion descripcion;
-    private  Costo costo;
-    private PrecioVenta precioVenta;
+    private Hospital hospital;
+
     /**
      * Creates new form ModuloFarmacia
      */
-    public ModuloFarmacia(Frame parent, boolean modal, Nombre nombre, VentanaPrincipal ventanaPrincipal) {
+
+    public ModuloFarmacia(Frame parent, boolean modal,  Hospital hospital,VentanaPrincipal ventanaPrincipal) {
+
         super(parent, modal);
         initComponents();
-         try{
+        try {
             this.setIconImage(new ImageIcon(getClass().getResource("/autonoma/HospitalApp/images/logoH.png")).getImage());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
-      
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.ventanaPrincipal= ventanaPrincipal;
-        this.costo= costo;
-        this.precioVenta = precioVenta;
+
+        this.ventanaPrincipal = ventanaPrincipal;
+        this.hospital = hospital;
     }
-    
-      private void configurarComboTipo() {
+
+    private void configurarComboTipo() {
         comboTipo = new JComboBox<>();
         comboTipo.addItem("Seleccione tipo de medicamento");
         comboTipo.addItem("Genérico");
         comboTipo.addItem("Marca");
         comboTipo.setSelectedIndex(0);
     }
-        
-    String tipoSeleccionado = (String) jComboBox1.getSelectedItem();
-      if ("Seleccione tipo de medicamento".equals(tipoSeleccionado)) {
-      JOptionPane.showMessageDialog(this, "Por favor, seleccione un tipo de medicamento válido.");
-    return;
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -147,6 +142,11 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
         btnAgregarMedicamento.setBackground(new java.awt.Color(204, 204, 204));
         btnAgregarMedicamento.setText("Agregar");
+        btnAgregarMedicamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarMedicamentoActionPerformed(evt);
+            }
+        });
 
         btnModificarMedicamento.setBackground(new java.awt.Color(204, 204, 204));
         btnModificarMedicamento.setText("Modificar");
@@ -314,18 +314,64 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-      
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
 
     }//GEN-LAST:event_btnEliminar1ActionPerformed
 
+
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-   // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-  
+    private void btnAgregarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedicamentoActionPerformed
+        String nombre = txtNombre.getText().trim();
+        String descripcion = txtDescrpcion.getText().trim();
+        String tipo = (String) jComboBox1.getSelectedItem();
+        String costoStr = txtCosto.getText().trim();
+
+        if (nombre.isEmpty() || descripcion.isEmpty() || costoStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+            return;
+        }
+
+        if ("Seleccione tipo de medicamento".equals(tipo)) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un tipo de medicamento válido.");
+            return;
+        }
+
+        double costo;
+        try {
+            costo = Double.parseDouble(costoStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El costo debe ser un número válido.");
+            return;
+        }
+
+        Medicamento medicamento;
+
+        if ("Genérico".equals(tipo)) {
+            medicamento = new MedicamentoGenerico(nombre, descripcion, costo);
+        } else if ("De Marca".equals(tipo)) {
+            String fabricante = JOptionPane.showInputDialog(this, "Ingrese el nombre del fabricante:");
+            if (fabricante == null || fabricante.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe ingresar el fabricante del medicamento.");
+                return;
+            }
+            medicamento = new MedicamentoMarca(nombre, descripcion, costo, fabricante);
+        } else {
+            JOptionPane.showMessageDialog(this, "Tipo de medicamento no reconocido.");
+            return;
+        }
+
+// ventanaPrincipal.agregarMedicamento(medicamento);
+        JOptionPane.showMessageDialog(this, "Medicamento agregado correctamente.\nPrecio de venta: $" + medicamento.getPrecioVenta());
+
+    }//GEN-LAST:event_btnAgregarMedicamentoActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarMedicamento;
     private javax.swing.JButton btnEliminar;

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
  * @author Dsoch
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+
     private Hospital hospital;
 
     /**
@@ -22,13 +23,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal(Hospital hospital) {
         initComponents();
         this.setLocationRelativeTo(null);
-        try{
+        try {
             this.setIconImage(new ImageIcon(getClass().getResource("/autonoma/HospitalApp/images/logoH.png")).getImage());
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
-        this.hospital= hospital;
-        
+        this.hospital = hospital;
+
     }
 
     /**
@@ -284,12 +285,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpleadosMouseClicked
-        ModuloEmpleado VentanaModuloEmpleado = new ModuloEmpleado(this, true, this.hospital,this);
-        VentanaModuloEmpleado.setVisible(true);
+        ModuloEmpleado moduloEmpleado = new ModuloEmpleado(this, true, this.hospital, this); 
+        InicioEmpleado VentanaInicioEmpleado = new InicioEmpleado(this, true, this.hospital, this, moduloEmpleado);
+        VentanaInicioEmpleado.setVisible(true);
     }//GEN-LAST:event_btnEmpleadosMouseClicked
 
     private void btnPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseClicked
-       //le toca a rafa 
+        //le toca a rafa 
     }//GEN-LAST:event_btnPacientesMouseClicked
 
     private void btnFarmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFarmaciaMouseClicked
@@ -302,7 +304,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInformacionMouseClicked
 
     private void btnEmpleadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpleadosMouseEntered
-         this.mouseEntered(btnEmpleados);
+        this.mouseEntered(btnEmpleados);
     }//GEN-LAST:event_btnEmpleadosMouseEntered
 
     private void btnEmpleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpleadosMouseExited
@@ -332,14 +334,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnInformacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacionMouseExited
         this.mouseExited(btnInformacion);
     }//GEN-LAST:event_btnInformacionMouseExited
-     private void mouseEntered(JPanel panel){
-        panel.setBackground(new Color (248,242,241) );
+    private void mouseEntered(JPanel panel) {
+        panel.setBackground(new Color(248, 242, 241));
     }
-    
-    private void mouseExited(JPanel panel){
-        panel.setBackground(new Color (255,255,255) );
+
+    private void mouseExited(JPanel panel) {
+        panel.setBackground(new Color(255, 255, 255));
     }
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnEmpleados;
     private javax.swing.JPanel btnFarmacia;

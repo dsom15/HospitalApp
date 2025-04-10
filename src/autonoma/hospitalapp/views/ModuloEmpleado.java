@@ -27,7 +27,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
     public ModuloEmpleado(java.awt.Frame parent, boolean modal, Hospital hospital, VentanaPrincipal ventana) {
         super(parent, modal);
         initComponents();
-        initComponents();
+        
         this.setLocationRelativeTo(null);
         try {
             this.setIconImage(new ImageIcon(getClass().getResource("/autonoma/HospitalApp/images/logoH.png")).getImage());
@@ -285,7 +285,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

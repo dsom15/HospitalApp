@@ -14,24 +14,24 @@ public class EmpleadoSalud extends Empleado {
    /**
     * especialidad el empleado
     */
-    private String especialiad;
+    private String especialidad;
     /**
      * horas que trabajo el empleado
      */
     private double horasTrabajadas;
     // Constructor
-    public EmpleadoSalud(String especialiad, double horasTrabajadas, String nombre, String numeroDocumento, int edad,double salarioBase) {
+    public EmpleadoSalud(String especialidad, double horasTrabajadas, String nombre, String numeroDocumento, int edad,double salarioBase) {
         super(nombre, numeroDocumento, edad,salarioBase);
-        this.especialiad = especialiad;
+        this.especialidad = especialidad;
         this.horasTrabajadas = horasTrabajadas;
     }
     //Metodos de acceso
-    public String getEspecialiad() {
-        return especialiad;
+    public String getEspecialidad() {
+        return especialidad;
     }
 
-    public void setEspecialiad(String especialiad) {
-        this.especialiad = especialiad;
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
     }
 
     public double getHorasTrabajadas() {
