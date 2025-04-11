@@ -4,6 +4,7 @@
  */
 package autonoma.hospitalapp.views;
 
+import autonoma.hospitalapp.models.Hospital;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,10 +13,13 @@ import javax.swing.ImageIcon;
  */
 public class CitaMedica extends javax.swing.JDialog {
 
+    private Hospital hospital;
+    private VentanaPrincipal ventanaPrincipal;
+
     /**
      * Creates new form CitaMedica
      */
-    public CitaMedica(java.awt.Frame parent, boolean modal) {
+    public CitaMedica(java.awt.Frame parent, boolean modal, Hospital hospital, VentanaPrincipal ventanaprincipal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -24,6 +28,8 @@ public class CitaMedica extends javax.swing.JDialog {
         } catch (Exception e) {
 
         }
+        this.hospital = hospital;
+        this.ventanaPrincipal = ventanaprincipal;
     }
 
     /**

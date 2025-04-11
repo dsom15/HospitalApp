@@ -4,6 +4,7 @@
  */
 package autonoma.hospitalapp.views;
 
+import autonoma.hospitalapp.models.Hospital;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,10 +13,13 @@ import javax.swing.ImageIcon;
  */
 public class HistorialPacientes extends javax.swing.JDialog {
 
+    private Hospital hospital;
+    private VentanaPrincipal ventanaPrincipal;
+
     /**
      * Creates new form HistorialPacientes
      */
-    public HistorialPacientes(java.awt.Frame parent, boolean modal) {
+    public HistorialPacientes(java.awt.Frame parent, boolean modal, Hospital hospital, VentanaPrincipal ventanaprincipal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -24,6 +28,8 @@ public class HistorialPacientes extends javax.swing.JDialog {
         } catch (Exception e) {
 
         }
+        this.hospital = hospital;
+        this.ventanaPrincipal = ventanaprincipal;
     }
 
     /**
@@ -51,7 +57,6 @@ public class HistorialPacientes extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
