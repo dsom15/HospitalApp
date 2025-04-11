@@ -1,4 +1,8 @@
 ID Nomina: 2
+<<<<<<< HEAD
 Fecha: Fri Apr 11 17:53:56 COT 2025
+=======
+Fecha: Fri Apr 11 17:47:15 COT 2025
+>>>>>>> e721a478e1f092172c5532a9ebec104cac1b777a
 Empleados:
 Total Nomina: 0.0

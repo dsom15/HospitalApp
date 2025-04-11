@@ -8,8 +8,10 @@ import autonoma.hospitalapp.models.Empleado;
 import autonoma.hospitalapp.models.EmpleadoOperativo;
 import autonoma.hospitalapp.models.EmpleadoSalud;
 import autonoma.hospitalapp.models.Hospital;
+import autonoma.hospitalapp.models.Paciente;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -89,6 +91,7 @@ public class ListaEmpleados extends javax.swing.JDialog {
         TablaEmpleados = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -143,6 +146,15 @@ public class ListaEmpleados extends javax.swing.JDialog {
             }
         });
 
+        BtnEliminar.setBackground(new java.awt.Color(0, 0, 0));
+        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnEliminar.setText("ELIMINAR");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -153,7 +165,9 @@ public class ListaEmpleados extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(BtnEliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)))
                 .addGap(65, 65, 65))
         );
         jPanel2Layout.setVerticalGroup(
@@ -164,7 +178,9 @@ public class ListaEmpleados extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(92, 92, 92)
                 .addComponent(jButton1)
-                .addGap(118, 118, 118)
+                .addGap(50, 50, 50)
+                .addComponent(BtnEliminar)
+                .addGap(50, 50, 50)
                 .addComponent(btnVolver)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -195,8 +211,26 @@ public class ListaEmpleados extends javax.swing.JDialog {
        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        int fila = this.TablaEmpleados.getSelectedRow();
+        System.out.println(fila);
+        if(fila>=0){
+            Empleado e = this.empleados.get(fila);
+            int option = JOptionPane.showConfirmDialog(this, "Esta Seguro de que desea eliminar a el empleado " +e.getNombre());
+            if (option == 0){
+                this.hospital.eliminarPaciente(e.getNombre());
+                this.empleados = this.hospital.getEmpleados();
+                this.llenarTabla();
+                JOptionPane.showMessageDialog(this, "El empleado "+e.getNombre()+" Fue borrado del sistema" );
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor seleccione el producto que desea borrar");
+        }
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnEliminar;
     private javax.swing.JTable TablaEmpleados;
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton1;
