@@ -216,7 +216,7 @@ public class ListaEmpleados extends javax.swing.JDialog {
         System.out.println(fila);
         if(fila>=0){
             Empleado e = this.empleados.get(fila);
-            int option = JOptionPane.showConfirmDialog(this, "Esta Seguro de que desea borrar a el empleado"+e.getNombre());
+            int option = JOptionPane.showConfirmDialog(this, "Esta Seguro de que desea eliminar a el empleado " +e.getNombre());
             if (option == 0){
                 this.hospital.eliminarPaciente(e.getNombre());
                 this.empleados = this.hospital.getEmpleados();
