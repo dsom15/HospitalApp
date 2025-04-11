@@ -236,7 +236,14 @@ public class AgregarPacientes extends javax.swing.JDialog {
         String correo = this.TxtCorreo.getText().trim();
         String telefonoEnTxt = this.TxtTelefono.getText().trim();
 
-        // Validar que edad y teléfono sean números válidos
+    // Validar campos vacios
+    if (nombre.isEmpty () 
+        || numeroDocumento.isEmpty() || edadEnTxt.isEmpty() || correo.isEmpty() || telefonoEnTxt.isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.");
+        return;
+    }
+    
+    // Validar que edad y teléfono sean números válidos
         try {
             double edad = Double.parseDouble(edadEnTxt);
             double telefono = Double.parseDouble(telefonoEnTxt);
@@ -246,15 +253,6 @@ public class AgregarPacientes extends javax.swing.JDialog {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error: Edad o teléfono deben ser números válidos.");
         }
-    
-
-    // Validar campos vacios
-    if (nombre.isEmpty () 
-        || numeroDocumento.isEmpty() || edadEnTxt.isEmpty() || correo.isEmpty() || telefonoEnTxt.isEmpty() ) {
-            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.");
-        return;
-    }
-
 
     }//GEN-LAST:event_BtnAgregarPacienteActionPerformed
 
