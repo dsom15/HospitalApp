@@ -63,6 +63,10 @@ public class Hospital {
      * clase nomina
      */
     private Nomina nomina;
+    /**
+     * atributo inventarioFarmacia
+     */
+    private InventarioFarmacia inventarioFarmacia;
 
     //Constructor
     public Hospital(double metaDeventasAnual, boolean estado, Gerente gerente, Localizacion localizacion) {
@@ -72,6 +76,7 @@ public class Hospital {
         this.localizacion = localizacion;
         this.empleados = new ArrayList<>();
         this.nomina = new Nomina(this.empleados);
+        this.inventarioFarmacia = new InventarioFarmacia();
     }
 
     public Hospital() {
@@ -81,6 +86,7 @@ public class Hospital {
         this.localizacion = localizacion;
         this.empleados = new ArrayList<>();
         this.nomina = new Nomina(this.empleados);
+        this.inventarioFarmacia = new InventarioFarmacia();
     }
 
     //Metodos de acceso 
@@ -178,6 +184,9 @@ public class Hospital {
     public void setNomina(Nomina nomina) {
         this.nomina = nomina;
     }
+    public InventarioFarmacia getInventarioFarmacia() {
+    return inventarioFarmacia;
+}
 
     // metodos crud de empleado
     /**
