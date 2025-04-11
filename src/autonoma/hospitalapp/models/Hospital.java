@@ -5,6 +5,7 @@ import autonoma.hospitalapp.exceptions.MalaFormulacionException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Se crea la clase Hospital
@@ -335,9 +336,9 @@ public class Hospital {
     // Metodo CRUD para pacientes
 
     /**
-=======
-
-    /**
+     * =======
+     *
+     * /**
      * metodo para leer y asiganar atributos del gerente
      */
     public Gerente leerTextoGerente() {
@@ -371,6 +372,7 @@ public class Hospital {
         }
         return gerente;
     }
+
     /**
      * metodo para leer y asiganar atributos del localizacion
      */
@@ -393,11 +395,38 @@ public class Hospital {
                     }
                 }
             }
-            
-            
 
         } catch (IOException | NumberFormatException e) {
             System.err.println("Error al leer el archivo de localización: " + e.getMessage());
+        }
+    }
+
+    public void cargarEmpleadosDesdeArchivo(Lector lector, String rutaArchivo) throws IOException {
+        List<String> lineas = lector.leer(rutaArchivo);
+
+        for (String linea : lineas) {
+            String[] partes = linea.split("\\|");
+
+            String tipo = partes[0];
+            String nombre = partes[1];
+            String numeroDocumento = partes[2];
+            int edad = Integer.parseInt(partes[3]);
+            double salarioBase = Double.parseDouble(partes[4]);
+
+            Empleado empleado;
+
+            if (tipo.equals("Operativo")) {
+                String areaTrabajo = partes[5];
+                empleado = new EmpleadoOperativo(areaTrabajo, nombre, numeroDocumento, edad, salarioBase);
+            } else if (tipo.equals("Salud")) {
+                String especialidad = partes[5];
+                double horasTrabajadas = Double.parseDouble(partes[6]);
+                empleado = new EmpleadoSalud(especialidad, horasTrabajadas, nombre, numeroDocumento, edad, salarioBase);
+            } else {
+                continue;
+            }
+
+            this.agregarEmpleado(empleado); 
         }
     }
 
@@ -410,7 +439,7 @@ public class Hospital {
      */
     public boolean agregarPaciente(Paciente p) {
         if (p == null || buscarPacientePorNombre(p.getNombre()) != null) {
-            return false; 
+            return false;
         }
         return this.pacientes.add(p);
     }
@@ -426,7 +455,7 @@ public class Hospital {
     }
 
     /**
-     * Busca un paciente por nombre 
+     * Busca un paciente por nombre
      *
      * @param nombre Nombre completo o parcial a buscar
      * @return Paciente encontrado o null si no existe

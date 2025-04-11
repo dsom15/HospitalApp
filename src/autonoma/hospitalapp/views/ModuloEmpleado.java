@@ -226,7 +226,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
 
 // Validar campos vacíos
         if (nombre.isEmpty() || numeroDocumento.isEmpty() || edadTexto.isEmpty() || salarioBaseTexto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.");
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar");
             return;
         }
 
@@ -243,9 +243,9 @@ public class ModuloEmpleado extends javax.swing.JDialog {
             Empleado empleado;
 
             if (tipoEmpleado == 0) {
-                String areaTrabajo = JOptionPane.showInputDialog(this, "Ingrese el área de trabajo:");
+                String areaTrabajo = JOptionPane.showInputDialog(this, "Ingrese el area de trabajo:");
                 if (areaTrabajo == null || areaTrabajo.trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Área de trabajo no puede estar vacía.");
+                    JOptionPane.showMessageDialog(this, "Area de trabajo no puede estar vacIa");
                     return;
                 }
                 empleado = new EmpleadoOperativo(areaTrabajo, nombre, numeroDocumento, edad, salarioBase);
@@ -253,12 +253,12 @@ public class ModuloEmpleado extends javax.swing.JDialog {
             } else if (tipoEmpleado == 1) {
                 String especialidad = JOptionPane.showInputDialog(this, "Ingrese la especialidad:");
                 if (especialidad == null || especialidad.trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Especialidad no puede estar vacía.");
+                    JOptionPane.showMessageDialog(this, "Especialidad no puede estar vacia");
                     return;
                 }
                 String horasTexto = JOptionPane.showInputDialog(this, "Ingrese las horas trabajadas:");
                 if (horasTexto == null || horasTexto.trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Debe ingresar las horas trabajadas.");
+                    JOptionPane.showMessageDialog(this, "Debe ingresar las horas trabajadas");
                     return;
                 }
 
@@ -266,19 +266,19 @@ public class ModuloEmpleado extends javax.swing.JDialog {
                 try {
                     horasTrabajadas = Double.parseDouble(horasTexto);
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(this, "Ingrese un número válido para horas trabajadas.");
+                    JOptionPane.showMessageDialog(this, "Ingrese un numero valido para horas trabajadas");
                     return;
                 }
 
                 empleado = new EmpleadoSalud(especialidad, horasTrabajadas, nombre, numeroDocumento, edad, salarioBase);
 
             } else {
-                JOptionPane.showMessageDialog(this, "Operación cancelada.");
+                JOptionPane.showMessageDialog(this, "Operacion cancelada");
                 return;
             }
 
             if (this.hospital.agregarEmpleado(empleado)) {
-                JOptionPane.showMessageDialog(this, "Empleado " + nombre + " agregado exitosamente.");
+                JOptionPane.showMessageDialog(this, "Empleado " + nombre + " agregado exitosamente");
 
                 // Guardar persistencia
                 try {
@@ -290,10 +290,10 @@ public class ModuloEmpleado extends javax.swing.JDialog {
 
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "No se pudo agregar el empleado.");
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el empleado");
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Edad o salario deben ser números válidos.");
+            JOptionPane.showMessageDialog(this, "Edad o salario deben ser numeros validos");
         }
 
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
