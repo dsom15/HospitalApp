@@ -295,30 +295,49 @@ public class Hospital {
         }
     }
 
-    public void leerDesdeArchivo(String ruta) {
+    public void leerDesdeArchivo() {
         Lector lector = new LectorArchivoTextoPlano();
         try {
-            ArrayList<String> archivo = lector.leer(ruta);
-            for (String linea : archivo) {
-                String[] partes = linea.split(";");
-                this.nombre = partes[0];
-                this.direccion = partes[1];
-                this.telefono = partes[2];
-                this.presupuesto = Double.parseDouble(partes[3]);
-                this.fechaFundacion = partes[4];
+            ArrayList<String> archivo = lector.leer("hospita.txt");
+            
+            for (String lineaCompleta : archivo) {
+                String[] lineas = lineaCompleta.split(",");
+                for (String linea : lineas) {
+                    String[] partes = linea.split(":");
+                    
+                    if (partes.length == 2) {
+                        switch (partes[0].trim()) {
+                            case "Nombre":
+                                this.nombre = partes[1];
+                                break;
+                            case "Direccion":
+                                this.direccion = partes[1];
+                                break;
+                            case "Telefono":
+                                this.telefono = partes[1];
+                                break;
+                            case "Presupuesto":
+                                this.presupuesto = Double.parseDouble(partes[1]);
+                                break;
+                            case "Fecha de Fundacion":
+                                this.fechaFundacion = partes[1];
+                                break;
+                        }
+                    }
+                }
             }
-        } catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("como" + getNombre());
+            }catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
             System.err.println("Error al leer archivo del hospital: " + e.getMessage());
         }
-    }
-
-    // Metodo CRUD para pacientes
-    /**
-     * Agrega un nuevo paciente al sistema
-     *
-     * @param p Paciente a agregar
-     * @return true si se agregó correctamente
-     */
+        }
+        // Metodo CRUD para pacientes
+        /**
+         * Agrega un nuevo paciente al sistema
+         *
+         * @param p Paciente a agregar
+         * @return true si se agregó correctamente
+         */
     public boolean agregarPaciente(Paciente p) {
         return this.pacientes.add(p);
     }
@@ -340,89 +359,106 @@ public class Hospital {
     }
 
     /**
- * Busca un paciente por nombre (no sensible a mayúsculas)
- * @param nombre Nombre completo o parcial a buscar
- * @return Primer paciente encontrado o null si no existe
- */
-public Paciente buscarPacientePorNombre(String nombre) {
-    if (nombre == null || nombre.trim().isEmpty()) {
+     * Busca un paciente por nombre (no sensible a mayúsculas)
+     *
+     * @param nombre Nombre completo o parcial a buscar
+     * @return Primer paciente encontrado o null si no existe
+     */
+    public Paciente buscarPacientePorNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            return null;
+        }
+
+        String nombreBuscado = nombre.trim().toLowerCase();
+
+        for (Paciente paciente : pacientes) {
+            if (paciente != null && paciente.getNombre() != null
+                    && paciente.getNombre().toLowerCase().contains(nombreBuscado)) {
+                return paciente;
+            }
+        }
         return null;
     }
-    
-    String nombreBuscado = nombre.trim().toLowerCase();
-    
-    for (Paciente paciente : pacientes) {
-        if (paciente != null && paciente.getNombre() != null && 
-            paciente.getNombre().toLowerCase().contains(nombreBuscado)) {
-            return paciente;
-        }
-    }
-    return null;
-}
 
-/**
- * Actualiza el nombre de un paciente
- * @param nombreActual Nombre actual del paciente
- * @param nuevoNombre Nuevo nombre a asignar
- * @return true si se actualizó, false si no se encontró
- */
-public boolean actualizarPaciente(String nombreActual, String nuevoNombre) {
-    Paciente paciente = buscarPacientePorNombre(nombreActual);
-    if (paciente != null) {
-        paciente.setNombre(nuevoNombre);
-        return true;
-    }
-    return false;
-}
-    
-/**
- * Muestra lista de pacientes
- * @return Lista con datos de los pacientes
- */
-public String mostrarPacientes() {
-    String resultado = "";
-    for (Paciente p : pacientes) {
-        resultado += p.getNombre() + " - " + 
-                   p.getNumeroDeDocumento() + " - " +
-                   (p.isSaludable() ? "Sano" : "Enfermo") + "\n";
-    }
-    return resultado;
-}
-
-/**
- * Registra una enfermedad a un paciente
- * @param nombre Nombre del paciente
- * @param enfermedad Enfermedad a registrar
- * @return true si se registró, false si no se encontró
- */
-public boolean registrarEnfermedadPaciente(String nombre, Enfermedad enfermedad) {
-    Paciente paciente = buscarPacientePorNombre(nombre);
-    if (paciente != null) {
-        paciente.agregarEnfermedad(enfermedad);
-        return true;
-    }
-    return false;
-}
-
-/**
- * Trata una enfermedad de un paciente con una medicina
- * @param nombre Nombre del paciente
- * @param medicina Medicina a administrar
- * @param nombreEnfermedad Enfermedad a tratar
- * @return true si se trató, false si hubo error
- */
-public boolean tratarEnfermedadPaciente(String nombre, Medicina medicina, String nombreEnfermedad) {
-    try {
-        Paciente paciente = buscarPacientePorNombre(nombre);
+    /**
+     * Actualiza el nombre de un paciente
+     *
+     * @param nombreActual Nombre actual del paciente
+     * @param nuevoNombre Nuevo nombre a asignar
+     * @return true si se actualizó, false si no se encontró
+     */
+    public boolean actualizarPaciente(String nombreActual, String nuevoNombre) {
+        Paciente paciente = buscarPacientePorNombre(nombreActual);
         if (paciente != null) {
-            paciente.curarEnfermedad(medicina, nombreEnfermedad);
+            paciente.setNombre(nuevoNombre);
             return true;
         }
-    } catch (MalaFormulacionException e) {
-        System.err.println("Error al tratar enfermedad: " + e.getMessage());
+        return false;
     }
-    return false;
-}
-    
+
+    /**
+     * Muestra lista de pacientes
+     *
+     * @return Lista con datos de los pacientes
+     */
+    public String mostrarPacientes() {
+        String resultado = "";
+        for (Paciente p : pacientes) {
+            resultado += p.getNombre() + " - "
+                    + p.getNumeroDeDocumento() + " - "
+                    + (p.isSaludable() ? "Sano" : "Enfermo") + "\n";
+        }
+        return resultado;
+    }
+
+    /**
+     * Registra una enfermedad a un paciente
+     *
+     * @param nombre Nombre del paciente
+     * @param enfermedad Enfermedad a registrar
+     * @return true si se registró, false si no se encontró
+     */
+    public boolean registrarEnfermedadPaciente(String nombre, Enfermedad enfermedad) {
+        Paciente paciente = buscarPacientePorNombre(nombre);
+        if (paciente != null) {
+            paciente.agregarEnfermedad(enfermedad);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Trata una enfermedad de un paciente con una medicina
+     *
+     * @param nombre Nombre del paciente
+     * @param medicina Medicina a administrar
+     * @param nombreEnfermedad Enfermedad a tratar
+     * @return true si se trató, false si hubo error
+     */
+    public boolean tratarEnfermedadPaciente(String nombre, Medicina medicina, String nombreEnfermedad) {
+        try {
+            Paciente paciente = buscarPacientePorNombre(nombre);
+            if (paciente != null) {
+                paciente.curarEnfermedad(medicina, nombreEnfermedad);
+                return true;
+            }
+        } catch (MalaFormulacionException e) {
+            System.err.println("Error al tratar enfermedad: " + e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * metodo para obtner los empleados
+     *
+     * @return
+     */
+    public ArrayList<String> obtenerDatosEmpleadosComoTexto() {
+        ArrayList<String> datos = new ArrayList<>();
+        for (Empleado e : this.empleados) {
+            datos.add(e.toString()); // o algún método que convierta a formato deseado
+        }
+        return datos;
+    }
 
 }

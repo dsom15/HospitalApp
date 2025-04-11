@@ -7,7 +7,11 @@ package autonoma.hospitalapp.views;
 import autonoma.hospitalapp.models.Empleado;
 import autonoma.hospitalapp.models.EmpleadoOperativo;
 import autonoma.hospitalapp.models.EmpleadoSalud;
+import autonoma.hospitalapp.models.Escritor;
+import autonoma.hospitalapp.models.EscritorArchivoTextoPlano;
 import autonoma.hospitalapp.models.Hospital;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -20,6 +24,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
     private Hospital hospital;
     private VentanaPrincipal ventanaPrincipal;
     private Empleado empleado;
+    private Escritor escritor;
 
     /**
      * Creates new form ModuloEmpleado
@@ -27,7 +32,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
     public ModuloEmpleado(java.awt.Frame parent, boolean modal, Hospital hospital, VentanaPrincipal ventana) {
         super(parent, modal);
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
         try {
             this.setIconImage(new ImageIcon(getClass().getResource("/autonoma/HospitalApp/images/logoH.png")).getImage());
@@ -36,7 +41,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
         }
         this.hospital = hospital;
         this.ventanaPrincipal = ventana;
-        this.empleado = empleado;
+        this.escritor = new EscritorArchivoTextoPlano();
     }
 
     /**
@@ -219,7 +224,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
         String edadTexto = this.txtEdad.getText().trim();
         String salarioBaseTexto = this.txtSalarioBase.getText().trim();
 
-    // Validar campos vacios
+// Validar campos vacíos
         if (nombre.isEmpty() || numeroDocumento.isEmpty() || edadTexto.isEmpty() || salarioBaseTexto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.");
             return;
@@ -237,18 +242,18 @@ public class ModuloEmpleado extends javax.swing.JDialog {
 
             Empleado empleado;
 
-            if (tipoEmpleado == 0) { 
-                String areaTrabajo = JOptionPane.showInputDialog(this, "Ingrese el area de trabajo:");
+            if (tipoEmpleado == 0) {
+                String areaTrabajo = JOptionPane.showInputDialog(this, "Ingrese el área de trabajo:");
                 if (areaTrabajo == null || areaTrabajo.trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Area de trabajo no puede estar vacia.");
+                    JOptionPane.showMessageDialog(this, "Área de trabajo no puede estar vacía.");
                     return;
                 }
-                empleado = new EmpleadoOperativo(areaTrabajo, nombre, numeroDocumento, edad,salarioBase);
+                empleado = new EmpleadoOperativo(areaTrabajo, nombre, numeroDocumento, edad, salarioBase);
 
-            } else if (tipoEmpleado == 1) { 
+            } else if (tipoEmpleado == 1) {
                 String especialidad = JOptionPane.showInputDialog(this, "Ingrese la especialidad:");
                 if (especialidad == null || especialidad.trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Especialidad no puede estar vacia.");
+                    JOptionPane.showMessageDialog(this, "Especialidad no puede estar vacía.");
                     return;
                 }
                 String horasTexto = JOptionPane.showInputDialog(this, "Ingrese las horas trabajadas:");
@@ -261,11 +266,11 @@ public class ModuloEmpleado extends javax.swing.JDialog {
                 try {
                     horasTrabajadas = Double.parseDouble(horasTexto);
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(this, "Ingrese un numero valido para horas trabajadas.");
+                    JOptionPane.showMessageDialog(this, "Ingrese un número válido para horas trabajadas.");
                     return;
                 }
 
-                empleado = new EmpleadoSalud(especialidad, horasTrabajadas, nombre, numeroDocumento, edad,salarioBase);
+                empleado = new EmpleadoSalud(especialidad, horasTrabajadas, nombre, numeroDocumento, edad, salarioBase);
 
             } else {
                 JOptionPane.showMessageDialog(this, "Operación cancelada.");
@@ -274,14 +279,23 @@ public class ModuloEmpleado extends javax.swing.JDialog {
 
             if (this.hospital.agregarEmpleado(empleado)) {
                 JOptionPane.showMessageDialog(this, "Empleado " + nombre + " agregado exitosamente.");
-                this.dispose(); 
+
+                // Guardar persistencia
+                try {
+                    ArrayList<String> datosEmpleados = this.hospital.obtenerDatosEmpleadosComoTexto();
+                    this.escritor.escribir(datosEmpleados, "empleados.txt");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Error al guardar los empleados: " + ex.getMessage());
+                }
+
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "No se pudo agregar el empleado.");
             }
-
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Edad y salario deben ser valores numericos validos.");
+            JOptionPane.showMessageDialog(this, "Edad o salario deben ser números válidos.");
         }
+
     }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
