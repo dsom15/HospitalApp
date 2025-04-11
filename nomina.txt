@@ -58,3 +58,68 @@ Fecha: Fri Apr 11 12:37:11 COT 2025
 Empleados:
 Total Nomina: 0.0
 ----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 12:44:35 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 12:57:13 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 12:58:29 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:18:21 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:26:29 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:30:10 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:39:19 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:39:39 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:40:06 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:42:08 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:45:09 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:46:09 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 13:47:18 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------

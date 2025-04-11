@@ -60,11 +60,11 @@ public class EmpleadoSalud extends Empleado {
 
     @Override
     public String toString() {
-        return "Empleado Salud - Nombre: " + this.getNombre()
+        return "TipoEmpleado:Salud,Nombre: " + this.getNombre()
                 + ", Documento: " + this.getNumeroDocumento()
                 + ", Edad: " + this.getEdad()
                 + ", Salario Base: " + this.getSalarioBase()
                 + ", Especialidad: " + this.getEspecialidad()
-                + ", Horas Trabajadas: " + this.getHorasTrabajadas();
+                + ", Horas Trabajadas: " + this.getHorasTrabajadas()+"/n";
     }
 }

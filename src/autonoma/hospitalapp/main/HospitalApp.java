@@ -21,13 +21,13 @@ public class HospitalApp {
     public static void main(String[] args) {
         
         Hospital hospital= new Hospital();
+        Gerente gerente = new Gerente();
+        Localizacion localizacion= new Localizacion();
         /**
          * las urls de los archivos de texto plano que se van a crear
          */
         
         String directorio = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp";
-        String archivoLocalizacion = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\localizacion.txt";
-        String archivoGerente = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\gerente.txt";
         String archivoNomina = "C:\\Users\\Dsoch\\OneDrive\\Desktop\\estudio\\Programacion orientada a objetos\\Clase 3\\HospitalApp\\nomina.txt";
 
         MetodosArchivos ma = new MetodosArchivos();
@@ -36,38 +36,27 @@ public class HospitalApp {
          */
        
 
-        /**
-         * se crea el archivo localizacion
-         */
-        ma.crearArchivo(archivoLocalizacion);
-        ma.escribirArchivo(archivoLocalizacion, "Latitud: 37.25157313140872\n");
-        ma.escribirArchivo(archivoLocalizacion, "Longitud: -121.94667417922749\n");
-
-        /**
-         * se crea el archivo gerente
-         */
-        ma.crearArchivo(archivoGerente);
-        ma.escribirArchivo(archivoGerente, "Nombre: Aaron Glassman\n");
-        ma.escribirArchivo(archivoGerente, "Numero de documento: 84.941.564\n");
-        ma.escribirArchivo(archivoGerente, "Edad: 69\n");
-        ma.escribirArchivo(archivoGerente, "Carrera: Neurocirujano\n");
+     
+       
         /**
          * se crea el archivo para la nomina
          */
 
         // ma.guardarNomina(archivoNomina, nomina);
-         hospital.leerDesdeArchivo();
+         hospital.leerTextoHospital();
+         hospital.leerTextoGerente();
+         hospital.leerTextoLocalizacion();
         
         
         
         
         
         
-        Gerente gerente = ma.asignarAtributosGerente(archivoGerente);
-        Localizacion localizacion = ma.asignarAtributosLocalizacion(archivoLocalizacion);
+        
+       
         Nomina nomina = new Nomina(hospital.getEmpleados());
 
-// Guardar la nómina en el archivo
+       // Guardar la nómina en el archivo
         ma.guardarNomina(archivoNomina, nomina);
 
         VentanaPrincipal ventana = new VentanaPrincipal(hospital);

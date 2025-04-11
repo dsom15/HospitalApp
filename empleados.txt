@@ -1,1 +1,1 @@
-Empleado Operativo - Nombre: ass, Documento: 2323, Edad: 2323, Salario Base: 2323.0, Área de Trabajo: sas
+TipoEmpleado:Operativo,Nombre: ass, Documento: 21221, Edad: 121, Salario Base: 1212.0, Área de Trabajo: piso

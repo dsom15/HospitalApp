@@ -295,49 +295,114 @@ public class Hospital {
         }
     }
 
-    public void leerDesdeArchivo() {
+    /**
+     * metodo para leer los archivos de texto plano
+     */
+    public void leerTextoHospital() {
         Lector lector = new LectorArchivoTextoPlano();
         try {
             ArrayList<String> archivo = lector.leer("hospita.txt");
-            
+
             for (String lineaCompleta : archivo) {
                 String[] lineas = lineaCompleta.split(",");
                 for (String linea : lineas) {
                     String[] partes = linea.split(":");
-                    
+
                     if (partes.length == 2) {
-                        switch (partes[0].trim()) {
-                            case "Nombre":
-                                this.nombre = partes[1];
-                                break;
-                            case "Direccion":
-                                this.direccion = partes[1];
-                                break;
-                            case "Telefono":
-                                this.telefono = partes[1];
-                                break;
-                            case "Presupuesto":
-                                this.presupuesto = Double.parseDouble(partes[1]);
-                                break;
-                            case "Fecha de Fundacion":
-                                this.fechaFundacion = partes[1];
-                                break;
+                        String clave = partes[0].trim();
+                        String valor = partes[1].trim();
+
+                        if (clave.equals("Nombre")) {
+                            this.nombre = valor;
+                        } else if (clave.equals("Direccion")) {
+                            this.direccion = valor;
+                        } else if (clave.equals("Telefono")) {
+                            this.telefono = valor;
+                        } else if (clave.equals("Presupuesto")) {
+                            this.presupuesto = Double.parseDouble(valor);
+                        } else if (clave.equals("Fecha de Fundacion")) {
+                            this.fechaFundacion = valor;
                         }
                     }
                 }
             }
-                System.out.println("como" + getNombre());
-            }catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("como " + getNombre());
+        } catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
             System.err.println("Error al leer archivo del hospital: " + e.getMessage());
         }
+    }
+
+    /**
+     * metodo para leer y asiganar atributos del gerente
+     */
+    public Gerente leerTextoGerente() {
+        Lector lector = new LectorArchivoTextoPlano();
+        Gerente gerente = new Gerente();
+        try {
+            ArrayList<String> lineas = lector.leer("gerente.txt");
+
+            for (String linea : lineas) {
+                String[] partes = linea.split(":");
+
+                if (partes.length == 2) {
+                    String clave = partes[0].trim();
+                    String valor = partes[1].trim();
+
+                    if (clave.equals("Nombre")) {
+                        gerente.setNombre(valor);
+                    } else if (clave.equals("NumeroDeDocumento")) {
+                        gerente.setDocumentoIdentidad(valor);
+                    } else if (clave.equals("Edad")) {
+                        gerente.setEdad(Integer.parseInt(valor));
+                    } else if (clave.equals("Carrera")) {
+                        gerente.setCarrera(valor);
+                    }
+                }
+            }
+            this.gerente = gerente;
+
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al leer el archivo del gerente: " + e.getMessage());
         }
-        // Metodo CRUD para pacientes
-        /**
-         * Agrega un nuevo paciente al sistema
-         *
-         * @param p Paciente a agregar
-         * @return true si se agregó correctamente
-         */
+        return gerente;
+    }
+    /**
+     * metodo para leer y asiganar atributos del localizacion
+     */
+    public void leerTextoLocalizacion() {
+        Lector lector = new LectorArchivoTextoPlano();
+        this.localizacion = new Localizacion();
+        try {
+            ArrayList<String> lineas = lector.leer("localizacion.txt");
+
+            for (String linea : lineas) {
+                String[] partes = linea.split(":");
+                if (partes.length == 2) {
+                    String clave = partes[0].trim();
+                    String valor = partes[1].trim();
+
+                    if (clave.equals("Latitud")) {
+                        this.localizacion.setLatitud(Double.parseDouble(valor));
+                    } else if (clave.equals("Longitud")) {
+                        this.localizacion.setLongitud(Double.parseDouble(valor));
+                    }
+                }
+            }
+            
+            
+
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al leer el archivo de localización: " + e.getMessage());
+        }
+    }
+
+    // Metodo CRUD para pacientes
+    /**
+     * Agrega un nuevo paciente al sistema
+     *
+     * @param p Paciente a agregar
+     * @return true si se agregó correctamente
+     */
     public boolean agregarPaciente(Paciente p) {
         return this.pacientes.add(p);
     }
@@ -456,7 +521,7 @@ public class Hospital {
     public ArrayList<String> obtenerDatosEmpleadosComoTexto() {
         ArrayList<String> datos = new ArrayList<>();
         for (Empleado e : this.empleados) {
-            datos.add(e.toString()); // o algún método que convierta a formato deseado
+            datos.add(e.toString());
         }
         return datos;
     }
