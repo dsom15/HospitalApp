@@ -1,6 +1,7 @@
 package autonoma.hospitalapp.models;
 
 import autonoma.hospitalapp.exceptions.DeclararQuiebraException;
+import autonoma.hospitalapp.exceptions.MalaFormulacionException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -67,6 +68,11 @@ public class Hospital {
      * atributo inventarioFarmacia
      */
     private InventarioFarmacia inventarioFarmacia;
+    /**
+     * lista de pacientes
+     *
+     */
+    private ArrayList<Paciente> pacientes;
 
     //Constructor
     public Hospital(double metaDeventasAnual, boolean estado, Gerente gerente, Localizacion localizacion) {
@@ -77,6 +83,7 @@ public class Hospital {
         this.empleados = new ArrayList<>();
         this.nomina = new Nomina(this.empleados);
         this.inventarioFarmacia = new InventarioFarmacia();
+        this.pacientes = new ArrayList<>();
     }
 
     public Hospital() {
@@ -87,6 +94,7 @@ public class Hospital {
         this.empleados = new ArrayList<>();
         this.nomina = new Nomina(this.empleados);
         this.inventarioFarmacia = new InventarioFarmacia();
+        this.pacientes = new ArrayList<>();
     }
 
     //Metodos de acceso 
@@ -162,13 +170,14 @@ public class Hospital {
         this.localizacion = localizacion;
     }
 
-      public void aumentarPresupuesto(double precioVenta) {
+    public void aumentarPresupuesto(double precioVenta) {
         this.presupuesto += precioVenta;
     }
 
-      public void descontarPresupuesto(double costo) {
+    public void descontarPresupuesto(double costo) {
         this.presupuesto -= costo;
     }
+
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
@@ -184,9 +193,18 @@ public class Hospital {
     public void setNomina(Nomina nomina) {
         this.nomina = nomina;
     }
+
     public InventarioFarmacia getInventarioFarmacia() {
-    return inventarioFarmacia;
-}
+        return inventarioFarmacia;
+    }
+
+    public ArrayList<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(ArrayList<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
 
     // metodos crud de empleado
     /**
@@ -264,34 +282,147 @@ public class Hospital {
 
     /**
      * Métodos de gestión nomina
-     * @throws DeclararQuiebraException 
+     *
+     * @throws DeclararQuiebraException
      */
     public void procesarNomina() throws DeclararQuiebraException {
         try {
-            this.nomina.generarNomina(); 
+            this.nomina.generarNomina();
             this.nomina.descontarNomina(this);
         } catch (DeclararQuiebraException e) {
             this.estado = false;
             throw e;
         }
     }
-    
+
     public void leerDesdeArchivo(String ruta) {
-    Lector lector = new LectorArchivoTextoPlano();
-    try {
-        ArrayList<String> archivo = lector.leer(ruta);
-        for (String linea : archivo) {
-            String[] partes = linea.split(";");
-            this.nombre = partes[0];
-            this.direccion = partes[1];
-            this.telefono = partes[2];
-            this.presupuesto = Double.parseDouble(partes[3]);
-            this.fechaFundacion = partes[4];
+        Lector lector = new LectorArchivoTextoPlano();
+        try {
+            ArrayList<String> archivo = lector.leer(ruta);
+            for (String linea : archivo) {
+                String[] partes = linea.split(";");
+                this.nombre = partes[0];
+                this.direccion = partes[1];
+                this.telefono = partes[2];
+                this.presupuesto = Double.parseDouble(partes[3]);
+                this.fechaFundacion = partes[4];
+            }
+        } catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            System.err.println("Error al leer archivo del hospital: " + e.getMessage());
         }
-    } catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
-        System.err.println("Error al leer archivo del hospital: " + e.getMessage());
     }
+
+    // Metodo CRUD para pacientes
+    /**
+     * Agrega un nuevo paciente al sistema
+     *
+     * @param p Paciente a agregar
+     * @return true si se agregó correctamente
+     */
+    public boolean agregarPaciente(Paciente p) {
+        return this.pacientes.add(p);
+    }
+
+    /**
+     * Elimina un paciente por número de documento
+     *
+     * @param numeroDeDocumento Número de documento del paciente a eliminar
+     * @return true si se eliminó, false si no se encontró
+     */
+    public boolean eliminarPaciente(int numeroDeDocumento) {
+        for (int i = 0; i < pacientes.size(); i++) {
+            if (pacientes.get(i).getNumeroDeDocumento() == numeroDeDocumento) {
+                pacientes.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+ * Busca un paciente por nombre (no sensible a mayúsculas)
+ * @param nombre Nombre completo o parcial a buscar
+ * @return Primer paciente encontrado o null si no existe
+ */
+public Paciente buscarPacientePorNombre(String nombre) {
+    if (nombre == null || nombre.trim().isEmpty()) {
+        return null;
+    }
+    
+    String nombreBuscado = nombre.trim().toLowerCase();
+    
+    for (Paciente paciente : pacientes) {
+        if (paciente != null && paciente.getNombre() != null && 
+            paciente.getNombre().toLowerCase().contains(nombreBuscado)) {
+            return paciente;
+        }
+    }
+    return null;
 }
 
+/**
+ * Actualiza el nombre de un paciente
+ * @param nombreActual Nombre actual del paciente
+ * @param nuevoNombre Nuevo nombre a asignar
+ * @return true si se actualizó, false si no se encontró
+ */
+public boolean actualizarPaciente(String nombreActual, String nuevoNombre) {
+    Paciente paciente = buscarPacientePorNombre(nombreActual);
+    if (paciente != null) {
+        paciente.setNombre(nuevoNombre);
+        return true;
+    }
+    return false;
+}
+    
+/**
+ * Muestra lista de pacientes
+ * @return Lista con datos de los pacientes
+ */
+public String mostrarPacientes() {
+    String resultado = "";
+    for (Paciente p : pacientes) {
+        resultado += p.getNombre() + " - " + 
+                   p.getNumeroDeDocumento() + " - " +
+                   (p.isSaludable() ? "Sano" : "Enfermo") + "\n";
+    }
+    return resultado;
+}
+
+/**
+ * Registra una enfermedad a un paciente
+ * @param nombre Nombre del paciente
+ * @param enfermedad Enfermedad a registrar
+ * @return true si se registró, false si no se encontró
+ */
+public boolean registrarEnfermedadPaciente(String nombre, Enfermedad enfermedad) {
+    Paciente paciente = buscarPacientePorNombre(nombre);
+    if (paciente != null) {
+        paciente.agregarEnfermedad(enfermedad);
+        return true;
+    }
+    return false;
+}
+
+/**
+ * Trata una enfermedad de un paciente con una medicina
+ * @param nombre Nombre del paciente
+ * @param medicina Medicina a administrar
+ * @param nombreEnfermedad Enfermedad a tratar
+ * @return true si se trató, false si hubo error
+ */
+public boolean tratarEnfermedadPaciente(String nombre, Medicina medicina, String nombreEnfermedad) {
+    try {
+        Paciente paciente = buscarPacientePorNombre(nombre);
+        if (paciente != null) {
+            paciente.curarEnfermedad(medicina, nombreEnfermedad);
+            return true;
+        }
+    } catch (MalaFormulacionException e) {
+        System.err.println("Error al tratar enfermedad: " + e.getMessage());
+    }
+    return false;
+}
+    
 
 }
