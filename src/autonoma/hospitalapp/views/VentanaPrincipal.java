@@ -288,7 +288,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEmpleadosMouseClicked
 
     private void btnPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseClicked
-        System.out.println("Mostrar Modulo Pacientes");
+        ModuloPacientes moduloPacientes = new ModuloPacientes(this, true, this.hospital, this);
+        moduloPacientes.setVisible(true);
     }//GEN-LAST:event_btnPacientesMouseClicked
 
     private void btnFarmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFarmaciaMouseClicked

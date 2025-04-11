@@ -88,6 +88,9 @@ public class ModuloPacientes extends javax.swing.JDialog {
 
         BtnAgregarPacinte.setBackground(new java.awt.Color(255, 255, 255));
         BtnAgregarPacinte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnAgregarPacinteMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 BtnAgregarPacinteMouseEntered(evt);
             }
@@ -97,8 +100,6 @@ public class ModuloPacientes extends javax.swing.JDialog {
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/autonoma/hospitalapp/images/agregarEmpelado.png"))); // NOI18N
-        jLabel2.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel2.setMinimumSize(new java.awt.Dimension(80, 80));
 
         jLabel6.setText("Agregar Paciente");
 
@@ -126,10 +127,19 @@ public class ModuloPacientes extends javax.swing.JDialog {
         );
 
         BtnListaPacientes.setBackground(new java.awt.Color(255, 255, 255));
+        BtnListaPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnListaPacientesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnListaPacientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BtnListaPacientesMouseExited(evt);
+            }
+        });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/autonoma/hospitalapp/images/ListaPacientes.png"))); // NOI18N
-        jLabel3.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel3.setMinimumSize(new java.awt.Dimension(80, 80));
 
         jLabel7.setText("Lista Pacientes");
 
@@ -137,14 +147,15 @@ public class ModuloPacientes extends javax.swing.JDialog {
         BtnListaPacientes.setLayout(BtnListaPacientesLayout);
         BtnListaPacientesLayout.setHorizontalGroup(
             BtnListaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BtnListaPacientesLayout.createSequentialGroup()
+            .addGroup(BtnListaPacientesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(BtnListaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BtnListaPacientesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BtnListaPacientesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BtnListaPacientesLayout.setVerticalGroup(
             BtnListaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,6 +168,17 @@ public class ModuloPacientes extends javax.swing.JDialog {
         );
 
         BtnHistorialPaciente.setBackground(new java.awt.Color(255, 255, 255));
+        BtnHistorialPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnHistorialPacienteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnHistorialPacienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BtnHistorialPacienteMouseExited(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/autonoma/hospitalapp/images/EstadoPacientes.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -164,7 +186,7 @@ public class ModuloPacientes extends javax.swing.JDialog {
         jLabel4.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel4.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        jLabel8.setText("Historial Paciente");
+        jLabel8.setText("Estado Paciente");
 
         javax.swing.GroupLayout BtnHistorialPacienteLayout = new javax.swing.GroupLayout(BtnHistorialPaciente);
         BtnHistorialPaciente.setLayout(BtnHistorialPacienteLayout);
@@ -172,12 +194,14 @@ public class ModuloPacientes extends javax.swing.JDialog {
             BtnHistorialPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BtnHistorialPacienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(BtnHistorialPacienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(BtnHistorialPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BtnHistorialPacienteLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(BtnHistorialPacienteLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         BtnHistorialPacienteLayout.setVerticalGroup(
             BtnHistorialPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,12 +225,14 @@ public class ModuloPacientes extends javax.swing.JDialog {
             BtnConsultaMedicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BtnConsultaMedicaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(BtnConsultaMedicaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(BtnConsultaMedicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BtnConsultaMedicaLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(BtnConsultaMedicaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         BtnConsultaMedicaLayout.setVerticalGroup(
             BtnConsultaMedicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,6 +296,37 @@ public class ModuloPacientes extends javax.swing.JDialog {
     private void BtnAgregarPacinteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarPacinteMouseExited
         this.mouseExited(BtnAgregarPacinte);
     }//GEN-LAST:event_BtnAgregarPacinteMouseExited
+
+    private void BtnAgregarPacinteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarPacinteMouseClicked
+       AgregarPacientes ventanaAgregarPacientes = new AgregarPacientes (this.ventanaPrincipal, true, this.hospital,this.ventanaPrincipal);
+        ventanaAgregarPacientes.setVisible(true);
+    }//GEN-LAST:event_BtnAgregarPacinteMouseClicked
+
+    private void BtnListaPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnListaPacientesMouseEntered
+        this.mouseEntered(BtnListaPacientes);
+    }//GEN-LAST:event_BtnListaPacientesMouseEntered
+
+    private void BtnListaPacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnListaPacientesMouseExited
+        this.mouseExited(BtnListaPacientes);
+    }//GEN-LAST:event_BtnListaPacientesMouseExited
+
+    private void BtnListaPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnListaPacientesMouseClicked
+        ListaPaciente ventanaListaPacientes = new ListaPaciente (this.ventanaPrincipal, true, this.hospital,this.ventanaPrincipal);
+        ventanaListaPacientes.setVisible(true);
+    }//GEN-LAST:event_BtnListaPacientesMouseClicked
+
+    private void BtnHistorialPacienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHistorialPacienteMouseEntered
+        this.mouseEntered(BtnHistorialPaciente);
+    }//GEN-LAST:event_BtnHistorialPacienteMouseEntered
+
+    private void BtnHistorialPacienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHistorialPacienteMouseExited
+        this.mouseExited(BtnHistorialPaciente);
+    }//GEN-LAST:event_BtnHistorialPacienteMouseExited
+
+    private void BtnHistorialPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHistorialPacienteMouseClicked
+        EstadoPaciente ventanaEstado = new EstadoPaciente (this.ventanaPrincipal, true, this.hospital,this.ventanaPrincipal);
+        ventanaEstado.setVisible(true);
+    }//GEN-LAST:event_BtnHistorialPacienteMouseClicked
 
     private void mouseEntered(JPanel panel) {
         panel.setBackground(new Color(240, 240, 240));
