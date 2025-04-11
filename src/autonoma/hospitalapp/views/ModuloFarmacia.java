@@ -488,13 +488,14 @@ public class ModuloFarmacia extends javax.swing.JDialog {
         if (filaSeleccionada >= 0) {
             DefaultTableModel modelo = (DefaultTableModel) TablaMedicamentos.getModel();
 
-            String nombre = (String) modelo.getValueAt(filaSeleccionada, 0);
-            String descripcion = (String) modelo.getValueAt(filaSeleccionada, 1);
-            String tipo = (String) modelo.getValueAt(filaSeleccionada, 2);
-            double costo = Double.parseDouble(modelo.getValueAt(filaSeleccionada, 3).toString());
-            double precioVenta;
+            String nombre = modelo.getValueAt(filaSeleccionada, 0).toString();
+            String descripcion = modelo.getValueAt(filaSeleccionada, 1).toString();
+            double costo = Double.parseDouble(modelo.getValueAt(filaSeleccionada, 2).toString());
 
-            // Cálculo según el tipo de medicamento
+            // Si no tienes columna de tipo, puedes asumir un tipo por defecto
+            String tipo = "Genérico"; // o "Marca" si quieres
+
+            double precioVenta;
             if ("Genérico".equalsIgnoreCase(tipo)) {
                 precioVenta = costo * 1.10;
             } else if ("Marca".equalsIgnoreCase(tipo)) {
@@ -504,7 +505,22 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                 return;
             }
 
-            modelo.removeRow(filaSeleccionada);
+            // Eliminar del inventario central (Hospital)
+            List<Medicamento> medicamentos = hospital.getInventarioFarmacia().getMedicamentos();
+            Medicamento medAEliminar = null;
+            for (Medicamento m : medicamentos) {
+                if (m.getNombre().equals(nombre) && m.getDescripcion().equals(descripcion)) {
+                    medAEliminar = m;
+                    break;
+                }
+            }
+
+            if (medAEliminar != null) {
+                medicamentos.remove(medAEliminar);
+            }
+
+            // Actualizar tabla
+            llenarTablaMedicamentos();
 
             // Limpiar campos
             txtNombre.setText("");
