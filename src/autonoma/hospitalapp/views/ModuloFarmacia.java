@@ -9,11 +9,14 @@ import autonoma.hospitalapp.models.Medicamento;
 import autonoma.hospitalapp.models.MedicamentoGenerico;
 import autonoma.hospitalapp.models.MedicamentoMarca;
 import java.awt.Frame;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -24,12 +27,12 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     private VentanaPrincipal ventanaPrincipal;
     private JComboBox<String> comboTipo;
     private Hospital hospital;
+    private List<Medicamento> listaMedicamentos = new ArrayList<>();
 
     /**
      * Creates new form ModuloFarmacia
      */
-
-    public ModuloFarmacia(Frame parent, boolean modal,  Hospital hospital,VentanaPrincipal ventanaPrincipal) {
+    public ModuloFarmacia(Frame parent, boolean modal, Hospital hospital, VentanaPrincipal ventanaPrincipal) {
 
         super(parent, modal);
         initComponents();
@@ -41,6 +44,9 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
         this.ventanaPrincipal = ventanaPrincipal;
         this.hospital = hospital;
+        this.listaMedicamentos = hospital.getInventarioFarmacia().getMedicamentos();
+        llenarTablaMedicamentos();
+
     }
 
     private void configurarComboTipo() {
@@ -65,7 +71,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
         btnEliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        TablaMedicamentos = new javax.swing.JTable();
         btnAgregarMedicamento = new javax.swing.JButton();
         btnModificarMedicamento = new javax.swing.JButton();
         btnEliminarMedicamento = new javax.swing.JButton();
@@ -110,7 +116,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        TablaMedicamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -129,7 +135,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                 {null, null, null}
             },
             new String [] {
-                "Nombre", "Descripción", "Costo"
+                "Nombre", "Descripcion", "Costo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -140,8 +146,8 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setDoubleBuffered(true);
-        jScrollPane1.setViewportView(jTable2);
+        TablaMedicamentos.setDoubleBuffered(true);
+        jScrollPane1.setViewportView(TablaMedicamentos);
 
         btnAgregarMedicamento.setBackground(new java.awt.Color(204, 204, 204));
         btnAgregarMedicamento.setText("Agregar");
@@ -161,6 +167,11 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
         btnEliminarMedicamento.setBackground(new java.awt.Color(204, 204, 204));
         btnEliminarMedicamento.setText("Eliminar");
+        btnEliminarMedicamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarMedicamentoActionPerformed(evt);
+            }
+        });
 
         btnVenderMedicamento.setBackground(new java.awt.Color(204, 204, 204));
         btnVenderMedicamento.setText("Vender");
@@ -342,6 +353,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
        int filaSeleccionada = jTable2.getSelectedRow();
 
     if (filaSeleccionada >= 0) {
@@ -363,6 +375,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                             || !txtDescripcion.getText().trim().isEmpty()
                             || !txtCosto.getText().trim().isEmpty()
                             || jComboBox1.getSelectedIndex() != 0;
+
 
         if (camposLlenos) {
             JOptionPane.showMessageDialog(this,
@@ -421,9 +434,25 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
         // ventanaPrincipal.agregarMedicamento(medicamento);
         JOptionPane.showMessageDialog(this, "Medicamento agregado correctamente.\nPrecio de venta: $" + medicamento.getPrecioVenta());
+        listaMedicamentos.add(medicamento);
+        llenarTablaMedicamentos();
 
     }//GEN-LAST:event_btnAgregarMedicamentoActionPerformed
+    public void llenarTablaMedicamentos() {
+        String[] columnas = {"Nombre", "Descripcion", "Costo"};
+        List<Medicamento> lista = hospital.getInventarioFarmacia().getMedicamentos();
 
+        DefaultTableModel modelDefault = new DefaultTableModel(columnas, lista.size());
+        this.TablaMedicamentos.setModel(modelDefault);
+
+        TableModel dataModel = TablaMedicamentos.getModel();
+        for (int i = 0; i < lista.size(); i++) {
+            Medicamento medicamento = lista.get(i);
+            dataModel.setValueAt(medicamento.getNombre(), i, 0);
+            dataModel.setValueAt(medicamento.getDescripcion(), i, 1);
+            dataModel.setValueAt(medicamento.getCosto(), i, 2);
+        }
+    }
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
@@ -437,93 +466,140 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPrecioVentaActionPerformed
 
     private void btnModificarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMedicamentoActionPerformed
-         int filaSeleccionada = jTable2.getSelectedRow();
+        int filaSeleccionada = TablaMedicamentos.getSelectedRow();
 
-    if (filaSeleccionada >= 0) {
-        String nombre = txtNombre.getText().trim();
-        String descripcion = txtDescripcion.getText().trim();
-        String tipo = (String) jComboBox1.getSelectedItem();
-        String costoStr = txtCosto.getText().trim();
+        if (filaSeleccionada >= 0) {
+            String nombre = txtNombre.getText().trim();
+            String descripcion = txtDescripcion.getText().trim();
+            String tipo = (String) jComboBox1.getSelectedItem();
+            String costoStr = txtCosto.getText().trim();
 
-        if (nombre.isEmpty() || descripcion.isEmpty() || costoStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
-            return;
+            if (nombre.isEmpty() || descripcion.isEmpty() || costoStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+                return;
+            }
+
+            if ("Seleccione tipo de medicamento".equals(tipo)) {
+                JOptionPane.showMessageDialog(this, "Por favor, seleccione un tipo válido.");
+                return;
+            }
+
+            double costo;
+            try {
+                costo = Double.parseDouble(costoStr);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "El costo debe ser un número válido.");
+                return;
+            }
+
+            // Actualizar valores en la tabla (solo columnas existentes: 0, 1, 2)
+            DefaultTableModel modelo = (DefaultTableModel) TablaMedicamentos.getModel();
+            modelo.setValueAt(nombre, filaSeleccionada, 0);
+            modelo.setValueAt(descripcion, filaSeleccionada, 1);
+            modelo.setValueAt(costo, filaSeleccionada, 2);
+
+            // Limpiar campos
+            txtNombre.setText("");
+            txtDescripcion.setText("");
+            txtCosto.setText("");
+            txtPrecioVenta.setText("");
+            jComboBox1.setSelectedIndex(0);
+
+            JOptionPane.showMessageDialog(this, "Medicamento modificado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila para modificar.");
         }
-
-        if ("Seleccione tipo de medicamento".equals(tipo)) {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un tipo válido.");
-            return;
-        }
-
-        double costo;
-        try {
-            costo = Double.parseDouble(costoStr);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El costo debe ser un número válido.");
-            return;
-        }
-
-        // Actualizar valores en la tabla
-        DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
-        modelo.setValueAt(nombre, filaSeleccionada, 0);
-        modelo.setValueAt(descripcion, filaSeleccionada, 1);
-        modelo.setValueAt(tipo, filaSeleccionada, 2);
-        modelo.setValueAt(costo, filaSeleccionada, 3);
-
-        // Limpia campos
-        txtNombre.setText("");
-        txtDescripcion.setText("");
-        txtCosto.setText("");
-        jComboBox1.setSelectedIndex(0);
-
-        JOptionPane.showMessageDialog(this, "Medicamento modificado correctamente.");
-    } else {
-        JOptionPane.showMessageDialog(this, "Seleccione una fila para modificar.");
-    }
 
     }//GEN-LAST:event_btnModificarMedicamentoActionPerformed
 
     private void btnVenderMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderMedicamentoActionPerformed
-       int filaSeleccionada = jTable2.getSelectedRow();
+        int filaSeleccionada = TablaMedicamentos.getSelectedRow();
 
-    if (filaSeleccionada >= 0) {
-        DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
-        
-        String nombre = (String) modelo.getValueAt(filaSeleccionada, 0);
-        String descripcion = (String) modelo.getValueAt(filaSeleccionada, 1);
-        String tipo = (String) modelo.getValueAt(filaSeleccionada, 2);
-        double costo = Double.parseDouble(modelo.getValueAt(filaSeleccionada, 3).toString());
-        double precioVenta;
+        if (filaSeleccionada >= 0) {
+            DefaultTableModel modelo = (DefaultTableModel) TablaMedicamentos.getModel();
 
-        // Cálculo según el tipo de medicamento
-        if ("Genérico".equalsIgnoreCase(tipo)) {
-            precioVenta = costo * 1.10;
-        } else if ("Marca".equalsIgnoreCase(tipo)) {
-            precioVenta = costo * 1.25;
+            String nombre = modelo.getValueAt(filaSeleccionada, 0).toString();
+            String descripcion = modelo.getValueAt(filaSeleccionada, 1).toString();
+            double costo = Double.parseDouble(modelo.getValueAt(filaSeleccionada, 2).toString());
+
+            // Si no tienes columna de tipo, puedes asumir un tipo por defecto
+            String tipo = "Genérico"; // o "Marca" si quieres
+
+            double precioVenta;
+            if ("Genérico".equalsIgnoreCase(tipo)) {
+                precioVenta = costo * 1.10;
+            } else if ("Marca".equalsIgnoreCase(tipo)) {
+                precioVenta = costo * 1.25;
+            } else {
+                JOptionPane.showMessageDialog(this, "Tipo de medicamento no reconocido.");
+                return;
+            }
+
+            // Eliminar del inventario central (Hospital)
+            List<Medicamento> medicamentos = hospital.getInventarioFarmacia().getMedicamentos();
+            Medicamento medAEliminar = null;
+            for (Medicamento m : medicamentos) {
+                if (m.getNombre().equals(nombre) && m.getDescripcion().equals(descripcion)) {
+                    medAEliminar = m;
+                    break;
+                }
+            }
+
+            if (medAEliminar != null) {
+                medicamentos.remove(medAEliminar);
+            }
+
+            // Actualizar tabla
+            llenarTablaMedicamentos();
+
+            // Limpiar campos
+            txtNombre.setText("");
+            txtDescripcion.setText("");
+            txtCosto.setText("");
+            jComboBox1.setSelectedIndex(0);
+
+            JOptionPane.showMessageDialog(this, "Venta realizada. \n"
+                    + "Medicamento: " + nombre + "\n"
+                    + "Tipo: " + tipo + "\n"
+                    + "Precio de venta: $" + String.format("%.2f", precioVenta));
         } else {
-            JOptionPane.showMessageDialog(this, "Tipo de medicamento no reconocido.");
+            JOptionPane.showMessageDialog(this, "Seleccione un medicamento para vender.");
+        }
+    }//GEN-LAST:event_btnVenderMedicamentoActionPerformed
+
+    private void btnEliminarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMedicamentoActionPerformed
+        int filaSeleccionada = TablaMedicamentos.getSelectedRow();
+
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona un medicamento para eliminar.");
             return;
         }
 
-        modelo.removeRow(filaSeleccionada);
+        String nombreMedicamento = TablaMedicamentos.getValueAt(filaSeleccionada, 0).toString();
 
-        // Limpiar campos
-        txtNombre.setText("");
-        txtDescripcion.setText("");
-        txtCosto.setText("");
-        jComboBox1.setSelectedIndex(0);
+        // Buscar y eliminar el medicamento del inventario del hospital
+        List<Medicamento> medicamentos = hospital.getInventarioFarmacia().getMedicamentos();
 
-        JOptionPane.showMessageDialog(this, "Venta realizada. \n"
-                + "Medicamento: " + nombre + "\n"
-                + "Tipo: " + tipo + "\n"
-                + "Precio de venta: $" + String.format("%.2f", precioVenta));
-      } else {
-        JOptionPane.showMessageDialog(this, "Seleccione un medicamento para vender.");
-      }
-    }//GEN-LAST:event_btnVenderMedicamentoActionPerformed
+        Medicamento medicamentoAEliminar = null;
+        for (Medicamento m : medicamentos) {
+            if (m.getNombre().equals(nombreMedicamento)) {
+                medicamentoAEliminar = m;
+                break;
+            }
+        }
+
+        if (medicamentoAEliminar != null) {
+            medicamentos.remove(medicamentoAEliminar);
+            JOptionPane.showMessageDialog(this, "Medicamento eliminado correctamente.");
+            llenarTablaMedicamentos();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró el medicamento en el inventario.");
+        }
+    }//GEN-LAST:event_btnEliminarMedicamentoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaMedicamentos;
     private javax.swing.JButton btnAgregarMedicamento;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEliminarMedicamento;
@@ -542,7 +618,6 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;
