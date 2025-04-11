@@ -46,7 +46,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     private void configurarComboTipo() {
         comboTipo = new JComboBox<>();
         comboTipo.addItem("Seleccione tipo de medicamento");
-        comboTipo.addItem("Genérico");
+        comboTipo.addItem("Generico");
         comboTipo.addItem("Marca");
         comboTipo.setSelectedIndex(0);
     }
@@ -329,7 +329,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 689, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,9 +405,9 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
         Medicamento medicamento;
 
-        if ("Genérico".equals(tipo)) {
+        if ("Generico".equals(tipo)) {
             medicamento = new MedicamentoGenerico(nombre, descripcion, costo);
-        } else if ("De Marca".equals(tipo)) {
+        } else if ("Marca".equals(tipo)) {
             String fabricante = JOptionPane.showInputDialog(this, "Ingrese el nombre del fabricante:");
             if (fabricante == null || fabricante.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Debe ingresar el fabricante del medicamento.");
