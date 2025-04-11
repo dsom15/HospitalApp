@@ -299,12 +299,12 @@ public class Hospital {
         Lector lector = new LectorArchivoTextoPlano();
         try {
             ArrayList<String> archivo = lector.leer("hospita.txt");
-            
+
             for (String lineaCompleta : archivo) {
                 String[] lineas = lineaCompleta.split(",");
                 for (String linea : lineas) {
                     String[] partes = linea.split(":");
-                    
+
                     if (partes.length == 2) {
                         switch (partes[0].trim()) {
                             case "Nombre":
@@ -326,54 +326,49 @@ public class Hospital {
                     }
                 }
             }
-                System.out.println("como" + getNombre());
-            }catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("como" + getNombre());
+        } catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
             System.err.println("Error al leer archivo del hospital: " + e.getMessage());
         }
-        }
-        // Metodo CRUD para pacientes
-        /**
-         * Agrega un nuevo paciente al sistema
-         *
-         * @param p Paciente a agregar
-         * @return true si se agregó correctamente
-         */
+    }
+    // Metodo CRUD para pacientes
+
+    /**
+     * Agrega un nuevo paciente al sistema
+     *
+     * @param p Paciente a agregar
+     * @return true si se agregó correctamente
+     */
     public boolean agregarPaciente(Paciente p) {
+        if (p == null || buscarPacientePorNombre(p.getNombre()) != null) {
+            return false; 
+        }
         return this.pacientes.add(p);
     }
 
     /**
-     * Elimina un paciente por número de documento
+     * Elimina un paciente por nombre
      *
-     * @param numeroDeDocumento Número de documento del paciente a eliminar
+     * @param nombre Nombre del paciente a eliminar
      * @return true si se eliminó, false si no se encontró
      */
-    public boolean eliminarPaciente(int numeroDeDocumento) {
-        for (int i = 0; i < pacientes.size(); i++) {
-            if (pacientes.get(i).getNumeroDeDocumento() == numeroDeDocumento) {
-                pacientes.remove(i);
-                return true;
-            }
-        }
-        return false;
+    public boolean eliminarPaciente(String nombre) {
+        return pacientes.removeIf(paciente -> paciente.getNombre().equalsIgnoreCase(nombre));
     }
 
     /**
-     * Busca un paciente por nombre (no sensible a mayúsculas)
+     * Busca un paciente por nombre 
      *
      * @param nombre Nombre completo o parcial a buscar
-     * @return Primer paciente encontrado o null si no existe
+     * @return Paciente encontrado o null si no existe
      */
     public Paciente buscarPacientePorNombre(String nombre) {
         if (nombre == null || nombre.trim().isEmpty()) {
             return null;
         }
 
-        String nombreBuscado = nombre.trim().toLowerCase();
-
         for (Paciente paciente : pacientes) {
-            if (paciente != null && paciente.getNombre() != null
-                    && paciente.getNombre().toLowerCase().contains(nombreBuscado)) {
+            if (paciente.getNombre().equalsIgnoreCase(nombre)) {
                 return paciente;
             }
         }
@@ -402,13 +397,13 @@ public class Hospital {
      * @return Lista con datos de los pacientes
      */
     public String mostrarPacientes() {
-        String resultado = "";
+        StringBuilder resultado = new StringBuilder();
         for (Paciente p : pacientes) {
-            resultado += p.getNombre() + " - "
-                    + p.getNumeroDeDocumento() + " - "
-                    + (p.isSaludable() ? "Sano" : "Enfermo") + "\n";
+            resultado.append(p.getNombre()).append(" - ")
+                    .append(p.getEdad()).append(" años - ")
+                    .append(p.isSaludable() ? "Sano" : "Enfermo").append("\n");
         }
-        return resultado;
+        return resultado.toString();
     }
 
     /**

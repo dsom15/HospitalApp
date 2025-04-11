@@ -36,8 +36,7 @@ public class Paciente {
      * @param correo Correo electrónico del paciente
      * @param telefono Número de teléfono del paciente
      */
-    public Paciente(String nombre, int numeroDeDocumento, int edad,
-            String correo, String telefono) {
+    public Paciente(String nombre, int numeroDeDocumento, int edad,String correo, String telefono) {
         this.nombre = nombre;
         this.numeroDeDocumento = numeroDeDocumento;
         this.edad = edad;
