@@ -12,8 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 /**
- *
- * @author Rafael
+* @author Rafael
+ * @version 1.1
+ * @since 11/04/2025
  */
 public class ListaPaciente extends javax.swing.JDialog {
 

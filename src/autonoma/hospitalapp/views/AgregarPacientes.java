@@ -10,8 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Rafael
+* @author Rafael
+ * @version 1.1
+ * @since 11/04/2025
  */
 
 public class AgregarPacientes extends javax.swing.JDialog {
