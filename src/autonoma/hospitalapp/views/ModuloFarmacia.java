@@ -8,6 +8,7 @@ import autonoma.hospitalapp.models.Hospital;
 import autonoma.hospitalapp.models.Medicamento;
 import autonoma.hospitalapp.models.MedicamentoGenerico;
 import autonoma.hospitalapp.models.MedicamentoMarca;
+import java.awt.Color;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -639,4 +641,13 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecioVenta;
     // End of variables declaration//GEN-END:variables
+    private void mouseEntered(JPanel panel) {
+        panel.setBackground(new Color(240, 240, 240));
+    }
+
+    private void mouseExited(JPanel panel) {
+        panel.setBackground(new Color(255, 255, 255));
+    }
+
+
 }
