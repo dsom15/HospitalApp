@@ -354,9 +354,9 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-     int filaSeleccionada = jTable2.getSelectedRow();
-
      int filaSeleccionada = TablaMedicamentos.getSelectedRow();
+
+    
 
 
     if (filaSeleccionada >= 0) {
@@ -365,7 +365,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
         String nombre = (String) modelo.getValueAt(filaSeleccionada, 0);
         modelo.removeRow(filaSeleccionada);
 
-        // Limpiar campos
+     
         txtNombre.setText("");
         txtDescripcion.setText("");
         txtCosto.setText("");
@@ -373,7 +373,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
         JOptionPane.showMessageDialog(this, "Medicamento eliminado correctamente: " + nombre);
     } else {
-        // Verifica si los campos están llenos, pero no se seleccionó ninguna fila
+ 
         boolean camposLlenos = !txtNombre.getText().trim().isEmpty()
                             || !txtDescripcion.getText().trim().isEmpty()
                             || !txtCosto.getText().trim().isEmpty()
@@ -495,13 +495,12 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                 return;
             }
 
-            // Actualizar valores en la tabla (solo columnas existentes: 0, 1, 2)
             DefaultTableModel modelo = (DefaultTableModel) TablaMedicamentos.getModel();
             modelo.setValueAt(nombre, filaSeleccionada, 0);
             modelo.setValueAt(descripcion, filaSeleccionada, 1);
             modelo.setValueAt(costo, filaSeleccionada, 2);
 
-            // Limpiar campos
+          
             txtNombre.setText("");
             txtDescripcion.setText("");
             txtCosto.setText("");
@@ -525,8 +524,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
             String descripcion = modelo.getValueAt(filaSeleccionada, 1).toString();
             double costo = Double.parseDouble(modelo.getValueAt(filaSeleccionada, 2).toString());
 
-            // Si no tienes columna de tipo, puedes asumir un tipo por defecto
-            String tipo = "Genérico"; // o "Marca" si quieres
+            String tipo = "Genérico"; 
 
             double precioVenta;
             if ("Genérico".equalsIgnoreCase(tipo)) {
@@ -538,7 +536,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                 return;
             }
 
-            // Eliminar del inventario central (Hospital)
+       
             List<Medicamento> medicamentos = hospital.getInventarioFarmacia().getMedicamentos();
             Medicamento medAEliminar = null;
             for (Medicamento m : medicamentos) {
@@ -552,10 +550,9 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                 medicamentos.remove(medAEliminar);
             }
 
-            // Actualizar tabla
+          
             llenarTablaMedicamentos();
 
-            // Limpiar campos
             txtNombre.setText("");
             txtDescripcion.setText("");
             txtCosto.setText("");
