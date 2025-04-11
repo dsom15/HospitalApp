@@ -148,7 +148,7 @@ public class EstadoPaciente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "El Paciente "+nombre+" no se encuentra registrado");
         }else{
             JOptionPane.showMessageDialog(this, "El Paciente fue encontrado: \n\n"+
-                "Paciente "+p.getNombre()+": "+ p.getNumeroDeDocumento()+ "\n"+ 
+                "Paciente "+p.getNombre()+": "+ 
                 "Estado: "+p.getEnfermedades());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
