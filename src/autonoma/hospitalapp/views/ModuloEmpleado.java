@@ -224,7 +224,7 @@ public class ModuloEmpleado extends javax.swing.JDialog {
         String edadTexto = this.txtEdad.getText().trim();
         String salarioBaseTexto = this.txtSalarioBase.getText().trim();
 
-// Validar campos vacíos
+        // Validar campos vacíos
         if (nombre.isEmpty() || numeroDocumento.isEmpty() || edadTexto.isEmpty() || salarioBaseTexto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.");
             return;

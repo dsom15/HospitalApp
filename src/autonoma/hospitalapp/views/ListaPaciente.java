@@ -209,6 +209,7 @@ public class ListaPaciente extends javax.swing.JDialog {
             
         }
         
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -220,4 +221,5 @@ public class ListaPaciente extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
 }
