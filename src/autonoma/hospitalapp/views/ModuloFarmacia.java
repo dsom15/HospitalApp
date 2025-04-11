@@ -298,9 +298,9 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -342,28 +342,41 @@ public class ModuloFarmacia extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
-    int filaSeleccionada = jTable2.getSelectedRow();
+       int filaSeleccionada = jTable2.getSelectedRow();
 
     if (filaSeleccionada >= 0) {
         DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+
+        String nombre = (String) modelo.getValueAt(filaSeleccionada, 0);
         modelo.removeRow(filaSeleccionada);
 
+        // Limpiar campos
         txtNombre.setText("");
         txtDescripcion.setText("");
         txtCosto.setText("");
         jComboBox1.setSelectedIndex(0);
 
-        JOptionPane.showMessageDialog(this, "Medicamento eliminado correctamente.");
+        JOptionPane.showMessageDialog(this, "Medicamento eliminado correctamente: " + nombre);
     } else {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione una fila para eliminar.");
-    }
+        // Verifica si los campos están llenos, pero no se seleccionó ninguna fila
+        boolean camposLlenos = !txtNombre.getText().trim().isEmpty()
+                            || !txtDescripcion.getText().trim().isEmpty()
+                            || !txtCosto.getText().trim().isEmpty()
+                            || jComboBox1.getSelectedIndex() != 0;
 
+        if (camposLlenos) {
+            JOptionPane.showMessageDialog(this,
+                "Para eliminar un medicamento debe seleccionarlo directamente desde la tabla.\n"
+              + "Llenar los campos no es suficiente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un medicamento desde la tabla para eliminar.");
+        }
+    }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void btnAgregarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedicamentoActionPerformed
