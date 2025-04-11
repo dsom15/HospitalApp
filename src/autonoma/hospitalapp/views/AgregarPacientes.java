@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
  *
  * @author Rafael
  */
-
 public class AgregarPacientes extends javax.swing.JDialog {
 
     private Hospital hospital;
@@ -34,6 +33,7 @@ public class AgregarPacientes extends javax.swing.JDialog {
 
         this.hospital = hospital;
         this.ventanaPrincipal = ventanaprincipal;
+
     }
 
     /**
@@ -237,17 +237,17 @@ public class AgregarPacientes extends javax.swing.JDialog {
         String correo = this.TxtCorreo.getText().trim();
         String telefonoEnTxt = this.TxtTelefono.getText().trim();
 
-    // Validar campos vacios
-    if (nombre.isEmpty () || numeroDocumento.isEmpty() || edadEnTxt.isEmpty() || correo.isEmpty() || telefonoEnTxt.isEmpty() ) {
+        // Validar campos vacios
+        if (nombre.isEmpty() || numeroDocumento.isEmpty() || edadEnTxt.isEmpty() || correo.isEmpty() || telefonoEnTxt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.");
-        return;
-    }
-    
-    // Validar que edad y teléfono sean números válidos
+            return;
+        }
+
+        // Validar que edad y teléfono sean números válidos
         try {
             double edad = Double.parseDouble(edadEnTxt);
             double telefono = Double.parseDouble(telefonoEnTxt);
-            
+
             Paciente nuevoPaciente = new Paciente(nombre, PROPERTIES, WIDTH, correo, telefonoEnTxt);
             hospital.agregarPaciente(nuevoPaciente);
 
@@ -256,7 +256,7 @@ public class AgregarPacientes extends javax.swing.JDialog {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error: Edad o teléfono deben ser números válidos.");
         }
-
+        this.dispose();
     }//GEN-LAST:event_BtnAgregarPacienteActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
