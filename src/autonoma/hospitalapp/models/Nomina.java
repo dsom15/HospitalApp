@@ -99,10 +99,12 @@ public class Nomina {
         this.totalSalarioNomina = calcularTotalSalario();
         this.fecha = new Date();
     }
+
     /**
      * Método para descontar el salrio del presupuesto
+     *
      * @param hospital
-     * @throws DeclararQuiebraException 
+     * @throws DeclararQuiebraException
      */
     public void descontarNomina(Hospital hospital) throws DeclararQuiebraException {
         hospital.setPresupuesto(hospital.getPresupuesto() - this.totalSalarioNomina);
@@ -110,6 +112,19 @@ public class Nomina {
         if (hospital.getPresupuesto() < 0) {
             hospital.setEstado(false);
             throw new DeclararQuiebraException();
+        }
+    }
+/**
+ * registrar el patrocinio si entra en quiebra
+ * @param hospital
+ * @param valorPatrocinio 
+ */
+    public void registrarPatrocinio(Hospital hospital, double valorPatrocinio) {
+        hospital.setPresupuesto(hospital.getPresupuesto() + valorPatrocinio);
+
+        // Si con el patrocinio el hospital sale de quiebra
+        if (hospital.getPresupuesto() >= 0) {
+            hospital.setEstado(true); // Hospital vuelve a estar activo
         }
     }
 

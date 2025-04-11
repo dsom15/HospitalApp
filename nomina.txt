@@ -123,3 +123,13 @@ Fecha: Fri Apr 11 13:47:18 COT 2025
 Empleados:
 Total Nomina: 0.0
 ----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 14:17:14 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
+ID Nomina: 2
+Fecha: Fri Apr 11 14:24:04 COT 2025
+Empleados:
+Total Nomina: 0.0
+----------------------------------
