@@ -496,7 +496,7 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "El costo debe ser un número válido.");
                 return;
             }
-
+            
             /**
              * Para decir que en la tabla los campos en las filas
              * estan llenos, es decir que se pasa la información 
