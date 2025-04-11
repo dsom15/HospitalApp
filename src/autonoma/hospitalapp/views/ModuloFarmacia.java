@@ -358,9 +358,6 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
      int filaSeleccionada = TablaMedicamentos.getSelectedRow();
 
-    
-
-
     if (filaSeleccionada >= 0) {
         DefaultTableModel modelo = (DefaultTableModel) TablaMedicamentos.getModel();
 

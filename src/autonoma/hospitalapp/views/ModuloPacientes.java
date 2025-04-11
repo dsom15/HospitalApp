@@ -264,7 +264,7 @@ public class ModuloPacientes extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAgregarPacienteMouseExited
 
     private void BtnAgregarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarPacienteMouseClicked
-       AgregarPacientes ventanaAgregarPacientes = new AgregarPacientes (this.ventanaPrincipal, true, this.hospital,this.ventanaPrincipal);
+        AgregarPacientes ventanaAgregarPacientes = new AgregarPacientes(this.ventanaPrincipal, true, this.hospital, this.ventanaPrincipal);
         ventanaAgregarPacientes.setVisible(true);
     }//GEN-LAST:event_BtnAgregarPacienteMouseClicked
 
@@ -277,7 +277,7 @@ public class ModuloPacientes extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnListaPacientesMouseExited
 
     private void BtnListaPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnListaPacientesMouseClicked
-        ListaPaciente ventanaListaPacientes = new ListaPaciente (this.ventanaPrincipal, true, this.hospital,this.ventanaPrincipal);
+        ListaPaciente ventanaListaPacientes = new ListaPaciente(this.ventanaPrincipal, true, this.hospital, this.ventanaPrincipal);
         ventanaListaPacientes.setVisible(true);
     }//GEN-LAST:event_BtnListaPacientesMouseClicked
 
@@ -290,8 +290,8 @@ public class ModuloPacientes extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnHistorialPacienteMouseExited
 
     private void BtnHistorialPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHistorialPacienteMouseClicked
-        EstadoPaciente ventanaEstado = new EstadoPaciente (this.ventanaPrincipal, true, this.hospital,this.ventanaPrincipal);
-        ventanaEstado.setVisible(true);
+        EstadoPaciente ventanaEstadoPaciente = new EstadoPaciente(this.ventanaPrincipal, true, this.hospital, this.ventanaPrincipal);
+        ventanaEstadoPaciente.setVisible(true);
     }//GEN-LAST:event_BtnHistorialPacienteMouseClicked
 
     private void mouseEntered(JPanel panel) {
