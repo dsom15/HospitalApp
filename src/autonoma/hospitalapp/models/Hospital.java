@@ -326,16 +326,12 @@ public class Hospital {
                     }
                 }
             }
-<<<<<<< HEAD
             System.out.println("como" + getNombre());
-=======
             System.out.println("como " + getNombre());
->>>>>>> edc46e7ddba7d9c918e66e6b300cd3dccb4a03e8
         } catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
             System.err.println("Error al leer archivo del hospital: " + e.getMessage());
         }
     }
-<<<<<<< HEAD
     // Metodo CRUD para pacientes
 
     /**
@@ -407,7 +403,6 @@ public class Hospital {
 
     // Metodo CRUD para pacientes
     /**
->>>>>>> edc46e7ddba7d9c918e66e6b300cd3dccb4a03e8
      * Agrega un nuevo paciente al sistema
      *
      * @param p Paciente a agregar
