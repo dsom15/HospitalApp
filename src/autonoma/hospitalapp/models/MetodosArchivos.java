@@ -132,39 +132,7 @@ public class MetodosArchivos {
      * @param archivo
      * @return el obnejto hospital
      */
-    public Hospital asignarAtributosHospital (String archivo) {
-        Hospital hospital = new Hospital();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(archivo));
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(": ");
-                if (partes.length == 2) {
-                    switch (partes[0]) {
-                        case "Nombre":
-                            hospital.setNombre(partes[1]);
-                            break;
-                        case "Direccion":
-                            hospital.setDireccion(partes[1]);
-                            break;
-                        case "Telefono":
-                            hospital.setTelefono(partes[1]);
-                            break;
-                        case "Presupuesto":
-                            hospital.setPresupuesto(Double.parseDouble(partes[1]));
-                            break;
-                        case "Fecha de Fundacion":
-                            hospital.setFechaFundacion(partes[1]);
-                            break;
-                    }
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return hospital;
-    }
+  
 
     /**
      *  metodo para asignar los atributos del archivo gerente a la clase gerente
