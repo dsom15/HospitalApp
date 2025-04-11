@@ -354,7 +354,10 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-       int filaSeleccionada = TablaMedicamentos.getSelectedRow();
+     int filaSeleccionada = jTable2.getSelectedRow();
+
+     int filaSeleccionada = TablaMedicamentos.getSelectedRow();
+
 
     if (filaSeleccionada >= 0) {
         DefaultTableModel modelo = (DefaultTableModel) TablaMedicamentos.getModel();
