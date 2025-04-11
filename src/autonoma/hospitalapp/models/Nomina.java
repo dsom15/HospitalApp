@@ -1,6 +1,7 @@
 package autonoma.hospitalapp.models;
 
 import autonoma.hospitalapp.exceptions.DeclararQuiebraException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -99,10 +100,12 @@ public class Nomina {
         this.totalSalarioNomina = calcularTotalSalario();
         this.fecha = new Date();
     }
+
     /**
      * Método para descontar el salrio del presupuesto
+     *
      * @param hospital
-     * @throws DeclararQuiebraException 
+     * @throws DeclararQuiebraException
      */
     public void descontarNomina(Hospital hospital) throws DeclararQuiebraException {
         hospital.setPresupuesto(hospital.getPresupuesto() - this.totalSalarioNomina);
@@ -111,6 +114,41 @@ public class Nomina {
             hospital.setEstado(false);
             throw new DeclararQuiebraException();
         }
+    }
+
+    /**
+     * registrar el patrocinio si entra en quiebra
+     *
+     * @param hospital
+     * @param valorPatrocinio
+     */
+    public void registrarPatrocinio(Hospital hospital, double valorPatrocinio) {
+        hospital.setPresupuesto(hospital.getPresupuesto() + valorPatrocinio);
+
+        // Si con el patrocinio el hospital sale de quiebra
+        if (hospital.getPresupuesto() >= 0) {
+            hospital.setEstado(true); // Hospital vuelve a estar activo
+        }
+    }
+
+    /**
+     *
+     */
+    public void guardarEnArchivo(String ruta, Escritor escritor) throws IOException {
+        ArrayList<String> contenido = new ArrayList<>();
+
+        contenido.add("ID Nomina: " + this.id);
+        contenido.add("Fecha: " + this.fecha);
+        contenido.add("Empleados:");
+
+        for (Empleado e : empleados) {
+            contenido.add("Nombre: " + e.getNombre() + ", Salario: " + e.calcularSalario());
+        }
+
+        contenido.add("Total Nomina: " + this.getTotalSalarioNomina());
+        
+
+        escritor.escribir(contenido, ruta);
     }
 
 }

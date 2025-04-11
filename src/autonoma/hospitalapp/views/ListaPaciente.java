@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
 /**
  *
  * @author Rafael
@@ -19,9 +20,8 @@ public class ListaPaciente extends javax.swing.JDialog {
 
     private Hospital hospital;
     private VentanaPrincipal ventanaPrincipal;
-    private ArrayList<Paciente>pacientes;
-    
-    
+    private ArrayList<Paciente> pacientes;
+
     public ListaPaciente(java.awt.Frame parent, boolean modal, Hospital hospital, VentanaPrincipal ventanaprincipal) {
         super(parent, modal);
         initComponents();
@@ -36,10 +36,7 @@ public class ListaPaciente extends javax.swing.JDialog {
         this.ventanaPrincipal = ventanaprincipal;
         this.llenarTabla();
     }
-    
 
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -179,37 +176,37 @@ public class ListaPaciente extends javax.swing.JDialog {
 
         int fila = this.TablePacientes.getSelectedRow();
         System.out.println(fila);
-        if(fila>=0){
+        if (fila >= 0) {
             Paciente p = this.pacientes.get(fila);
-            int option = JOptionPane.showConfirmDialog(this, "Esta Seguro de que desea borrar a el paciente"+p.getNombre() +" del sistema");
-            if (option == 0){
+            int option = JOptionPane.showConfirmDialog(this, "Esta Seguro de que desea borrar a el paciente" + p.getNombre() + " del sistema");
+            if (option == 0) {
                 this.hospital.eliminarPaciente(p.getNombre());
                 this.pacientes = this.hospital.getPacientes();
                 this.llenarTabla();
-                JOptionPane.showMessageDialog(this, "El paciente "+p.getNombre()+" Fue borrado del sistema" );
+                JOptionPane.showMessageDialog(this, "El paciente " + p.getNombre() + " Fue borrado del sistema");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Por favor seleccione el producto que desea borrar");
         }
-        
+
     }//GEN-LAST:event_BtnBorrarActionPerformed
 
-    public void llenarTabla(){
-        DefaultTableModel modelDefault = new DefaultTableModel(new String[]{  "Numero De Documento", "Nombre", "Estado"}, this.pacientes.size());
+    public void llenarTabla() {
+        DefaultTableModel modelDefault = new DefaultTableModel(
+                new String[]{"Nombre", "Numero De documeto", "Estado"},
+                this.pacientes.size()
+        );
         this.TablePacientes.setModel(modelDefault);
-        
+
         TableModel dataModel = TablePacientes.getModel();
         for (int i = 0; i < this.pacientes.size(); i++) {
             Paciente paciente = this.pacientes.get(i);
-            
-            dataModel.setValueAt(paciente.getNombre(),i , 0);
-            dataModel.setValueAt(paciente.getNumeroDeDocumento(),i , 2);
-            dataModel.setValueAt(paciente.getEnfermedades(),i , 3);
 
-            
+            dataModel.setValueAt(paciente.getNombre(), i, 0);
+            dataModel.setValueAt(paciente.getNumeroDeDocumento(), i, 1); 
+            dataModel.setValueAt(paciente.getEnfermedades(), i, 2); 
         }
-        
-       
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

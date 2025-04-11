@@ -4,9 +4,12 @@
  */
 package autonoma.hospitalapp.views;
 
+import autonoma.hospitalapp.exceptions.DeclararQuiebraException;
 import autonoma.hospitalapp.models.Hospital;
+import autonoma.hospitalapp.models.Nomina;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -14,6 +17,7 @@ import javax.swing.JPanel;
  * @author Dsoch
  */
 public class InicioEmpleado extends javax.swing.JDialog {
+
     private Hospital hospital;
     private VentanaPrincipal ventanaPrincipal;
     private ModuloEmpleado moduloEmpleado;
@@ -21,10 +25,10 @@ public class InicioEmpleado extends javax.swing.JDialog {
     /**
      * Creates new form InicioEmpleados
      */
-    public InicioEmpleado(java.awt.Frame parent, boolean modal, Hospital hospital, VentanaPrincipal ventana,ModuloEmpleado moduloEmpleado) {
+    public InicioEmpleado(java.awt.Frame parent, boolean modal, Hospital hospital, VentanaPrincipal ventana, ModuloEmpleado moduloEmpleado) {
         super(parent, modal);
         initComponents();
-          this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         try {
             this.setIconImage(new ImageIcon(getClass().getResource("/autonoma/HospitalApp/images/logoH.png")).getImage());
         } catch (Exception e) {
@@ -247,12 +251,12 @@ public class InicioEmpleado extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
-        ModuloEmpleado VentanaModuloEmpleado = new ModuloEmpleado(this.ventanaPrincipal, true, this.hospital,this.ventanaPrincipal);
+        ModuloEmpleado VentanaModuloEmpleado = new ModuloEmpleado(this.ventanaPrincipal, true, this.hospital, this.ventanaPrincipal);
         VentanaModuloEmpleado.setVisible(true);
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     private void btnAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseEntered
-          this.mouseEntered(btnAgregar);
+        this.mouseEntered(btnAgregar);
     }//GEN-LAST:event_btnAgregarMouseEntered
 
     private void btnAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseExited
@@ -260,7 +264,7 @@ public class InicioEmpleado extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAgregarMouseExited
 
     private void btnListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaMouseClicked
-        ListaEmpleados VentanaListaEmpleados = new ListaEmpleados (this.ventanaPrincipal, true, this.hospital,this.ventanaPrincipal);
+        ListaEmpleados VentanaListaEmpleados = new ListaEmpleados(this.ventanaPrincipal, true, this.hospital, this.ventanaPrincipal);
         VentanaListaEmpleados.setVisible(true);
     }//GEN-LAST:event_btnListaMouseClicked
 
@@ -269,28 +273,79 @@ public class InicioEmpleado extends javax.swing.JDialog {
     }//GEN-LAST:event_btnListaMouseEntered
 
     private void btnListaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaMouseExited
-       this.mouseExited(btnLista);
+        this.mouseExited(btnLista);
     }//GEN-LAST:event_btnListaMouseExited
 
     private void btnNominaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNominaMouseClicked
-        // TODO add your handling code here:
+        try {
+            Nomina nomina = new Nomina(hospital.getEmpleados());
+            nomina.generarNomina();
+            nomina.descontarNomina(hospital);
+
+            JOptionPane.showMessageDialog(this,
+                    "Nomina generada exitosamente.\nTotal pagado: $" + nomina.getTotalSalarioNomina(),
+                    "Nomina Generada",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (DeclararQuiebraException e) {
+            JOptionPane.showMessageDialog(this,
+                    "El hospital ha quedado en quiebra tras generar la nomina",
+                    "Quiebra",
+                    JOptionPane.ERROR_MESSAGE);
+
+            // Mostrar dialogo para registrar patrocinio
+            String input = JOptionPane.showInputDialog(this,
+                    "Ingrese el valor del patrocinio:",
+                    "Registrar Patrocinio",
+                    JOptionPane.QUESTION_MESSAGE);
+
+            try {
+                if (input != null) {
+                    double valorPatrocinio = Double.parseDouble(input);
+                    Nomina nomina = new Nomina(hospital.getEmpleados());
+                    nomina.registrarPatrocinio(hospital, valorPatrocinio);
+
+                    if (hospital.isEstado()) {
+                        JOptionPane.showMessageDialog(this,
+                                "El hospital ha salido de la quiebra",
+                                "Recuperacion Exitosa",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this,
+                                "El patrocinio fue registrado, pero el hospital sigue en quiebra",
+                                "Patrocinio Insuficiente",
+                                JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this,
+                        "Por favor ingrese un valor numerico valido para el patrocinio",
+                        "Entrada invalida",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Ocurrio un error inesperado al generar la nomina",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnNominaMouseClicked
 
     private void btnNominaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNominaMouseEntered
-       this.mouseEntered(btnNomina);
+        this.mouseEntered(btnNomina);
     }//GEN-LAST:event_btnNominaMouseEntered
 
     private void btnNominaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNominaMouseExited
         this.mouseExited(btnNomina);
     }//GEN-LAST:event_btnNominaMouseExited
-      private void mouseEntered(JPanel panel){
-        panel.setBackground(new Color (248,242,241) );
+    private void mouseEntered(JPanel panel) {
+        panel.setBackground(new Color(248, 242, 241));
     }
-    
-    private void mouseExited(JPanel panel){
-        panel.setBackground(new Color (255,255,255) );
+
+    private void mouseExited(JPanel panel) {
+        panel.setBackground(new Color(255, 255, 255));
     }
-  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnAgregar;
