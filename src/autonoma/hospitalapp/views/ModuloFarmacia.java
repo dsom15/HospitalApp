@@ -435,7 +435,9 @@ public class ModuloFarmacia extends javax.swing.JDialog {
             return;
         }
 
-        // ventanaPrincipal.agregarMedicamento(medicamento);
+        /**
+         * ventanaPrincipal.agregarMedicamento(medicamento)
+         */
         JOptionPane.showMessageDialog(this, "Medicamento agregado correctamente.\nPrecio de venta: $" + medicamento.getPrecioVenta());
         listaMedicamentos.add(medicamento);
         llenarTablaMedicamentos();
@@ -495,6 +497,12 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                 return;
             }
 
+            /**
+             * Para decir que en la tabla los campos en las filas
+             * estan llenos, es decir que se pasa la información 
+             * correspondiente
+             * 
+             */
             DefaultTableModel modelo = (DefaultTableModel) TablaMedicamentos.getModel();
             modelo.setValueAt(nombre, filaSeleccionada, 0);
             modelo.setValueAt(descripcion, filaSeleccionada, 1);
@@ -528,9 +536,9 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
             double precioVenta;
             if ("Genérico".equalsIgnoreCase(tipo)) {
-                precioVenta = costo * 1.10;
+                precioVenta = costo * 1.10; // 10%
             } else if ("Marca".equalsIgnoreCase(tipo)) {
-                precioVenta = costo * 1.25;
+                precioVenta = costo * 1.25; // 25% 
             } else {
                 JOptionPane.showMessageDialog(this, "Tipo de medicamento no reconocido.");
                 return;
@@ -550,9 +558,15 @@ public class ModuloFarmacia extends javax.swing.JDialog {
                 medicamentos.remove(medAEliminar);
             }
 
-          
+            /**
+             * Lleno la tabla al darle el boton agregar
+             */
             llenarTablaMedicamentos();
 
+            /**
+             * Limpiar campos de la tabla
+             * (TablaMedicamentos)
+             */
             txtNombre.setText("");
             txtDescripcion.setText("");
             txtCosto.setText("");
@@ -577,7 +591,9 @@ public class ModuloFarmacia extends javax.swing.JDialog {
 
         String nombreMedicamento = TablaMedicamentos.getValueAt(filaSeleccionada, 0).toString();
 
-        // Buscar y eliminar el medicamento del inventario del hospital
+        /**
+         * Buscar y eliminar el medicamento del inventario del hospital
+         */
         List<Medicamento> medicamentos = hospital.getInventarioFarmacia().getMedicamentos();
 
         Medicamento medicamentoAEliminar = null;
