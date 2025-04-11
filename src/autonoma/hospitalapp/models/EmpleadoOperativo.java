@@ -43,7 +43,7 @@ public class EmpleadoOperativo extends Empleado {
 
     @Override
     public String toString() {
-        return "Empleado Operativo - Nombre: " + this.getNombre()
+        return "TipoEmpleado:Operativo,Nombre: " + this.getNombre()
                 + ", Documento: " + this.getNumeroDocumento()
                 + ", Edad: " + this.getEdad()
                 + ", Salario Base: " + this.getSalarioBase()

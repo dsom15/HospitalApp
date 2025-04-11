@@ -73,17 +73,7 @@ public class Gerente {
         this.carrera = carrera;
     }
 
-    /**
-     * Obtiene toda la información del gerente en formato de texto.
-     *
-     * @return Una cadena con el nombre, documento, edad y carrera.
-     */
-    public String obtenerDatos() {
-        return "Nombre: " + nombre
-                + "\nDocumento: " + documentoIdentidad
-                + "\nEdad: " + edad
-                + "\nCarrera: " + carrera;
-    }
+    
 
     /**
      * Obtiene el nombre del gerente.
@@ -104,54 +94,54 @@ public class Gerente {
     }
 
     /**
-     * Obtiene el documento de identidad del gerente.
+     * Obtiene el documento de identidad del gerente
      *
-     * @return Documento de identidad.
+     * @return Documento de identidad
      */
     public String getDocumentoIdentidad() {
         return documentoIdentidad;
     }
 
     /**
-     * Para modificar o tener  un nuevo documento de identidad.
+     * Para modificar o tener  un nuevo documento de identidad
      *
-     * @param documentoIdentidad Nuevo documento de identidad.
+     * @param documentoIdentidad Nuevo documento de identidad
      */
     public void setDocumentoIdentidad(String documentoIdentidad) {
         this.documentoIdentidad = documentoIdentidad;
     }
 
     /**
-     * Obtiene la edad del gerente.
+     * Obtiene la edad del gerente
      *
-     * @return Edad del gerente.
+     * @return Edad del gerente
      */
     public int getEdad() {
         return edad;
     }
 
     /**
-     * Para modificar una nueva edad para el gerente.
+     * Para modificar una nueva edad para el gerente
      *
-     * @param edad Nueva edad.
+     * @param edad Nueva edad
      */
     public void setEdad(int edad) {
         this.edad = edad;
     }
 
     /**
-     * Obtiene la carrera profesional del gerente.
+     * Obtiene la carrera profesional del gerente
      *
-     * @return Carrera del gerente.
+     * @return Carrera del gerente
      */
     public String getCarrera() {
         return carrera;
     }
 
     /**
-     * Para Modificar una nueva carrera profesional para el gerente.
+     * Para Modificar una nueva carrera profesional para el gerente
      *
-     * @param carrera Nueva carrera.
+     * @param carrera Nueva carrera
      */
     public void setCarrera(String carrera) {
         this.carrera = carrera;

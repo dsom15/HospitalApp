@@ -127,76 +127,7 @@ public class MetodosArchivos {
         }
     }
 
-    /**
-     * metodo para asignar los atributos del archivo hospital a la clase hospital
-     * @param archivo
-     * @return el obnejto hospital
-     */
   
 
-    /**
-     *  metodo para asignar los atributos del archivo gerente a la clase gerente
-     * @param archivo
-     * @return el objeto gerente 
-     */
-    public Gerente asignarAtributosGerente(String archivo) {
-        Gerente gerente = new Gerente();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(archivo));
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(": ");
-                if (partes.length == 2) {
-                    switch (partes[0]) {
-                        case "Nombre":
-                            gerente.setNombre(partes[1]);
-                            break;
-                        case "Numero de documento":
-                            gerente.setDocumentoIdentidad(partes[1]);
-                            break;
-                        case "Edad":
-                            gerente.setEdad(Integer.parseInt(partes[1]));
-                            break;
-                        case "Carrera":
-                            gerente.setCarrera(partes[1]);
-                            break;
-                    }
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return gerente;
-    }
-    /**
-     * metodo para asignar los atributos del archivo localizacion a la clase localizacion
-     * @param archivo
-     * @return el objeto localizacion
-     */
-    public Localizacion asignarAtributosLocalizacion(String archivo) {
-        Localizacion localizacion = new Localizacion();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(archivo));
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(": ");
-                if (partes.length == 2) {
-                    switch (partes[0]) {
-                        case "Latitud":
-                            localizacion.setLatitud(Double.parseDouble(partes[1]));
-                            break;
-                        case "Longitud":
-                            localizacion.setLongitud(Double.parseDouble(partes[1]));
-                            break;
-                    }
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return localizacion;
-    }
 
 }

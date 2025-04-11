@@ -1,4 +1,4 @@
-Nombre: Aaron Glassman
-Numero de documento: 84.941.564
+Nombre:Aaron Glassman
+NumeroDeDocumento: 84.941.564
 Edad: 69
 Carrera: Neurocirujano
