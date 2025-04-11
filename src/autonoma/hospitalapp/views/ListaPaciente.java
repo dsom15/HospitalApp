@@ -8,6 +8,7 @@ import autonoma.hospitalapp.models.Hospital;
 import autonoma.hospitalapp.models.Paciente;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 /**
@@ -47,7 +48,6 @@ public class ListaPaciente extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         BtnVolver = new javax.swing.JButton();
-        BtnActualizar = new javax.swing.JButton();
         BtnBorrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablePacientes = new javax.swing.JTable();
@@ -85,9 +85,12 @@ public class ListaPaciente extends javax.swing.JDialog {
             }
         });
 
-        BtnActualizar.setText("Actualizar");
-
         BtnBorrar.setText("Borrar");
+        BtnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBorrarActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -99,7 +102,7 @@ public class ListaPaciente extends javax.swing.JDialog {
                 {null, null, null}
             },
             new String [] {
-                "Nombre", "Numero De Documento", "Estado"
+                "Nombre", "Numero De documento", "Estado"
             }
         ) {
             Class[] types = new Class [] {
@@ -133,7 +136,6 @@ public class ListaPaciente extends javax.swing.JDialog {
                 .addComponent(jScrollPane1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
@@ -145,10 +147,8 @@ public class ListaPaciente extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(BtnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
                         .addComponent(BtnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(35, 35, 35)
                         .addComponent(BtnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
@@ -172,8 +172,27 @@ public class ListaPaciente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolverActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_BtnVolverActionPerformed
+
+    private void BtnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBorrarActionPerformed
+
+        int fila = this.TablePacientes.getSelectedRow();
+        System.out.println(fila);
+        if(fila>=0){
+            Paciente p = this.pacientes.get(fila);
+            int option = JOptionPane.showConfirmDialog(this, "Esta Seguro de que desea borrar a el paciente"+p.getNombre() +" del sistema");
+            if (option == 0){
+                this.hospital.eliminarPaciente(p.getNombre());
+                this.pacientes = this.hospital.getPacientes();
+                this.llenarTabla();
+                JOptionPane.showMessageDialog(this, "El paciente "+p.getNombre()+" Fue borrado del sistema" );
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor seleccione el producto que desea borrar");
+        }
+        
+    }//GEN-LAST:event_BtnBorrarActionPerformed
 
     public void llenarTabla(){
         DefaultTableModel modelDefault = new DefaultTableModel(new String[]{  "Numero De Documento", "Nombre", "Estado"}, this.pacientes.size());
@@ -184,8 +203,8 @@ public class ListaPaciente extends javax.swing.JDialog {
             Paciente paciente = this.pacientes.get(i);
             
             dataModel.setValueAt(paciente.getNombre(),i , 0);
-            dataModel.setValueAt(paciente.getNumeroDeDocumento(),i , 1);
-            dataModel.setValueAt(paciente.getEnfermedades(),i , 2);
+            dataModel.setValueAt(paciente.getNumeroDeDocumento(),i , 2);
+            dataModel.setValueAt(paciente.getEnfermedades(),i , 3);
 
             
         }
@@ -193,7 +212,6 @@ public class ListaPaciente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnActualizar;
     private javax.swing.JButton BtnBorrar;
     private javax.swing.JButton BtnVolver;
     private javax.swing.JTable TablePacientes;

@@ -1,2 +1,10 @@
+<<<<<<< HEAD
 TipoEmpleado:Operativo,Nombre: sas, Documento: 323, Edad: 2332, Salario Base: 232.0, Área de Trabajo: dsd
 TipoEmpleado:Operativo,Nombre: 232, Documento: 2323, Edad: 232, Salario Base: 2.2222222222E10, Área de Trabajo: 2w
+=======
+<<<<<<< HEAD
+Empleado Salud - Nombre: sds, Documento: 100, Edad: 10, Salario Base: 1000.0, Especialidad: 10, Horas Trabajadas: 1.0
+=======
+TipoEmpleado:Operativo,Nombre: ass, Documento: 21221, Edad: 121, Salario Base: 1212.0, Área de Trabajo: piso
+>>>>>>> edc46e7ddba7d9c918e66e6b300cd3dccb4a03e8
+>>>>>>> e2077f7f430fe13829d30eaf05d44c4876339729

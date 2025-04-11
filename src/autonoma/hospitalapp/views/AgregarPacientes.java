@@ -5,6 +5,7 @@
 package autonoma.hospitalapp.views;
 
 import autonoma.hospitalapp.models.Hospital;
+import autonoma.hospitalapp.models.Paciente;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -237,8 +238,7 @@ public class AgregarPacientes extends javax.swing.JDialog {
         String telefonoEnTxt = this.TxtTelefono.getText().trim();
 
     // Validar campos vacios
-    if (nombre.isEmpty () 
-        || numeroDocumento.isEmpty() || edadEnTxt.isEmpty() || correo.isEmpty() || telefonoEnTxt.isEmpty() ) {
+    if (nombre.isEmpty () || numeroDocumento.isEmpty() || edadEnTxt.isEmpty() || correo.isEmpty() || telefonoEnTxt.isEmpty() ) {
             JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.");
         return;
     }
@@ -247,6 +247,9 @@ public class AgregarPacientes extends javax.swing.JDialog {
         try {
             double edad = Double.parseDouble(edadEnTxt);
             double telefono = Double.parseDouble(telefonoEnTxt);
+            
+            Paciente nuevoPaciente = new Paciente(nombre, PROPERTIES, WIDTH, correo, telefonoEnTxt);
+            hospital.agregarPaciente(nuevoPaciente);
 
             JOptionPane.showMessageDialog(this, "Paciente agregado:\nNombre: " + nombre + "\nTeléfono: " + telefono + "\nEdad" + edad);
 
